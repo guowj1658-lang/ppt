@@ -907,7 +907,7 @@
     }
 
     .ai-project-frame:hover {
-      transform: scale(1.025);
+      transform: none;
       border-color: rgba(18, 200, 255, 0.86);
     }
 
@@ -975,7 +975,7 @@
     }
 
     .ai-project-grid.mixed-six {
-      grid-template-columns: repeat(4, auto);
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr) minmax(0, 0.92fr) minmax(0, 1.08fr);
       grid-template-rows: repeat(2, minmax(0, 1fr));
       justify-content: center;
       align-items: stretch;
@@ -988,8 +988,8 @@
     .ai-project-grid.mixed-six .portrait {
       grid-row: 1 / 3;
       height: 100%;
-      width: auto;
-      aspect-ratio: 9 / 16;
+      width: 100%;
+      aspect-ratio: auto;
     }
 
     .ai-project-grid.mixed-six .portrait:first-child {
@@ -1002,8 +1002,8 @@
 
     .ai-project-grid.mixed-six .square {
       height: 100%;
-      width: auto;
-      aspect-ratio: 1 / 1;
+      width: 100%;
+      aspect-ratio: auto;
     }
 
     .ai-project-grid.mixed-six .square:nth-child(2) {
@@ -2423,6 +2423,93 @@
       text-shadow: 0 0 34px rgba(100, 206, 251, .12);
     }
 
+    /* Presentation fit: every top-level page lands exactly on one screen. */
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+
+    body > main.hero-page,
+    body > section {
+      height: 100vh;
+      min-height: 100vh;
+      margin-top: 0;
+      margin-bottom: 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .services-inner,
+    .chapter-inner,
+    .growth-detail-inner,
+    .ai-change-inner,
+    .ai-animation-inner,
+    .intro-inner,
+    .intro-curve-inner,
+    .summary-content,
+    .works-page-inner,
+    .product-compare-inner {
+      height: 100vh;
+      min-height: 0;
+    }
+
+    .ai-project-stage {
+      height: 100vh;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .ai-project-card {
+      position: relative;
+      top: auto;
+      height: calc(100vh - 48px);
+      min-height: 0;
+      transform: none !important;
+    }
+
+    .works-layout,
+    .works-cards-only .works-page-inner {
+      min-height: 0;
+    }
+
+    @media (max-height: 860px) {
+      .services-inner,
+      .growth-detail-inner,
+      .ai-change-inner,
+      .product-compare-inner {
+        padding-top: 34px;
+        padding-bottom: 34px;
+      }
+
+      .services-heading,
+      .ai-change-title,
+      .compare-heading {
+        margin-bottom: 34px;
+      }
+
+      .service-row {
+        min-height: 132px;
+      }
+
+      .growth-detail-notes {
+        margin-top: 36px;
+      }
+
+      .growth-detail-note-item,
+      .ai-change-note {
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+
+      .works-cards {
+        gap: 20px;
+      }
+
+      .works-cards-only .works-page-inner {
+        gap: 28px;
+      }
+    }
+
   </style>
 </head>
 
@@ -2603,13 +2690,13 @@
         <div class="timeline-panel"></div>
         <div class="timeline-panel">
           <div class="timeline-node">
-            <span class="timeline-date" data-edit-id="text-26">2026/8</span>
+            <span class="timeline-date" data-edit-id="text-26">****/*</span>
             <span class="timeline-dot"></span>
           </div>
         </div>
         <div class="timeline-panel">
           <div class="timeline-node">
-            <span class="timeline-date" data-edit-id="text-27">2026/9</span>
+            <span class="timeline-date" data-edit-id="text-27">****/*</span>
             <span class="timeline-dot"></span>
           </div>
         </div>
@@ -2623,12 +2710,12 @@
     <iframe class="toonhub-frame" src="toonhub-ppt-theme-2chars-adidas-uploaded.html" title="TOONHUB PPT Theme"></iframe>
     <div class="toonhub-note-overlay" aria-label="人物备注">
       <div class="toonhub-avatar-media" data-media-id="media-65" aria-label="备注圆形图片"></div>
-      <div class="toonhub-note-name" data-edit-id="text-84">金宏文</div>
-      <div class="toonhub-note-role" data-edit-id="text-85">渲染A组高级渲染专员</div>
+      <div class="toonhub-note-name" data-edit-id="text-84">李慧婷</div>
+      <div class="toonhub-note-role" data-edit-id="text-85">设计A组-设计助理</div>
     </div>
   </section>
 
-  <script id="toonhubNoteData" type="application/json">[{"name":"金宏文","role":"渲染A组高级渲染专员","avatar":"assets/embedded-2383dd93ff4618b5.webp"},{"name":"金宏文","role":"渲染A组高级渲染专员","avatar":"assets/embedded-8a7070a694827d26.webp"},{"name":"余梅","role":"设计D组-高级设计专员","avatar":"assets/embedded-2f75f2ee0d47f626.webp"},{"name":"谢思妍","role":"设计D组-设计专员","avatar":"assets/embedded-ab3a879ea52b9fe0.webp"},{"name":"李慧婷","role":"设计A组-设计助理","avatar":"assets/embedded-52a9d6e34f28226a.webp"}]</script>
+  <script id="toonhubNoteData" type="application/json">[{"name":"许康元","role":"渲染A组-中级渲染组长","avatar":"assets/embedded-2383dd93ff4618b5.webp"},{"name":"金宏文","role":"渲染A组高级渲染专员","avatar":"assets/embedded-8a7070a694827d26.webp"},{"name":"余梅","role":"设计D组-高级设计专员","avatar":"assets/embedded-2f75f2ee0d47f626.webp"},{"name":"谢思妍","role":"设计D组-高级设计专员","avatar":"assets/embedded-ab3a879ea52b9fe0.webp"},{"name":"李慧婷","role":"设计A组-设计助理","avatar":"assets/embedded-52a9d6e34f28226a.webp"}]</script>
 
   <section class="chapter-page" aria-label="落地有成">
     <div class="chapter-inner">
@@ -2826,7 +2913,7 @@
             <div class="ai-change-num">02</div>
             <div>
               <h2 data-edit-id="text-48">不再需要建模能力</h2>
-              <p data-edit-id="text-49">对没有STP文件的产品不再需要建模，感觉淘汰了自己一个技能</p>
+              <p data-edit-id="text-49">对没有STP文件的产品不再需要建模，感觉自己又要埋没一个技能</p>
             </div>
           </article>
 
@@ -2834,7 +2921,7 @@
             <div class="ai-change-num">03</div>
             <div>
               <h2 data-edit-id="text-50">怀疑自己的能力</h2>
-              <p data-edit-id="text-51">详情制作场景、特效图都不再需要渲染，模特和特效平面伙伴有自己的把控</p>
+              <p data-edit-id="text-51">详情制作场景和特效图都不再需要渲染，模特交互平面伙伴有自己的把控，好像在工作中我们能做的事请越来越少了</p>
             </div>
           </article>
         </div>
@@ -2848,10 +2935,10 @@
         <div class="ai-project-title" data-edit-id="text-57">初入Ai动画标题</div>
       </div>
       <div class="ai-project-grid portrait-four">
-        <div class="ai-project-frame" data-media-id="media-45" data-saved-image="assets/embedded-62e78c2fe52b9ede.webp" style="background-image: url(&quot;assets/embedded-62e78c2fe52b9ede.webp&quot;);"></div>
-        <div class="ai-project-frame" data-media-id="media-46" data-saved-image="assets/embedded-8eab50658831efc8.webp" style="background-image: url(&quot;assets/embedded-8eab50658831efc8.webp&quot;);"></div>
-        <div class="ai-project-frame" data-media-id="media-47" data-saved-image="assets/embedded-0f86aa8b01c58fe2.webp" style="background-image: url(&quot;assets/embedded-0f86aa8b01c58fe2.webp&quot;);"></div>
-        <div class="ai-project-frame" data-media-id="media-48" data-saved-image="assets/embedded-687604d982da3c7e.webp" style="background-image: url(&quot;assets/embedded-687604d982da3c7e.webp&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-45" data-saved-image="assets/embedded-62e78c2fe52b9ede-web.webp" style="background-image: url(&quot;assets/embedded-62e78c2fe52b9ede-web.webp&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-46" data-saved-image="assets/embedded-8eab50658831efc8-web.webp" style="background-image: url(&quot;assets/embedded-8eab50658831efc8-web.webp&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-47" data-saved-image="assets/embedded-0f86aa8b01c58fe2-web.webp" style="background-image: url(&quot;assets/embedded-0f86aa8b01c58fe2-web.webp&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-48" data-saved-image="assets/embedded-687604d982da3c7e-web.webp" style="background-image: url(&quot;assets/embedded-687604d982da3c7e-web.webp&quot;);"></div>
       </div>
     </article>
   </section>
@@ -3242,6 +3329,90 @@
         window.addEventListener("resize", updateProjectCards);
       }
 
+      const slides = Array.from(document.querySelectorAll("body > main.hero-page, body > section"));
+      const isEditingText = () => {
+        const active = document.activeElement;
+        return document.body.classList.contains("edit-mode") ||
+          active?.isContentEditable ||
+          ["INPUT", "TEXTAREA", "SELECT"].includes(active?.tagName || "");
+      };
+      const getActiveSlideIndex = () => {
+        const viewportMiddle = window.innerHeight / 2;
+        let bestIndex = 0;
+        let bestDistance = Number.POSITIVE_INFINITY;
+        slides.forEach((slide, index) => {
+          const rect = slide.getBoundingClientRect();
+          const distance = Math.abs(rect.top + rect.height / 2 - viewportMiddle);
+          if (distance < bestDistance) {
+            bestDistance = distance;
+            bestIndex = index;
+          }
+        });
+        return bestIndex;
+      };
+      const goToSlide = (index) => {
+        const target = slides[Math.max(0, Math.min(slides.length - 1, index))];
+        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+      const goBy = (offset) => goToSlide(getActiveSlideIndex() + offset);
+      const isToonhubSlideActive = () => slides[getActiveSlideIndex()]?.classList.contains("toonhub-page");
+      let pendingToonhubDirection = null;
+      let toonhubWheelLock = false;
+      const navigateToonhubPartner = (direction, clamp = true) => {
+        pendingToonhubDirection = direction;
+        toonhubFrame?.contentWindow?.postMessage({ type: "toonhub-navigate", direction, clamp }, "*");
+      };
+      window.addEventListener("message", (event) => {
+        if (event.source !== toonhubFrame?.contentWindow) return;
+        if (event.data?.type !== "toonhub-boundary") return;
+        const direction = event.data.direction || pendingToonhubDirection;
+        pendingToonhubDirection = null;
+        if (!event.data.moved && isToonhubSlideActive()) {
+          goBy(direction === "prev" ? -1 : 1);
+        }
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (isEditingText() || event.altKey || event.ctrlKey || event.metaKey) return;
+        if (isToonhubSlideActive() && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
+          event.preventDefault();
+          navigateToonhubPartner(event.key === "ArrowDown" ? "next" : "prev");
+          return;
+        }
+        const nextKeys = ["ArrowDown", "ArrowRight", "PageDown", " ", "Enter"];
+        const prevKeys = ["ArrowUp", "ArrowLeft", "PageUp", "Backspace"];
+        if (nextKeys.includes(event.key)) {
+          event.preventDefault();
+          goBy(1);
+        } else if (prevKeys.includes(event.key)) {
+          event.preventDefault();
+          goBy(-1);
+        } else if (event.key === "Home") {
+          event.preventDefault();
+          goToSlide(0);
+        } else if (event.key === "End") {
+          event.preventDefault();
+          goToSlide(slides.length - 1);
+        }
+      });
+
+      let wheelLock = false;
+      window.addEventListener("wheel", (event) => {
+        if (isEditingText() || Math.abs(event.deltaY) < 24) return;
+        event.preventDefault();
+        if (isToonhubSlideActive()) {
+          if (toonhubWheelLock) return;
+          toonhubWheelLock = true;
+          navigateToonhubPartner(event.deltaY > 0 ? "next" : "prev");
+          window.setTimeout(() => { toonhubWheelLock = false; }, 760);
+          return;
+        }
+        if (wheelLock) return;
+        wheelLock = true;
+        goBy(event.deltaY > 0 ? 1 : -1);
+        window.setTimeout(() => { wheelLock = false; }, 760);
+      }, { passive: false });
+
       mediaItems.forEach((node) => {
         node.addEventListener("click", () => {
           if (!document.body.classList.contains("edit-mode")) return;
@@ -3287,6 +3458,7 @@
       setMode("preview");
     })();
   </script>
+
 
 
 

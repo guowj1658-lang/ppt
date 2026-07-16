@@ -714,18 +714,22 @@
       window.parent.postMessage({ type: 'toonhub-partner-change', index: activeIndex }, '*');
     };
 
-    const navigate = (direction) => {
-      if (isAnimating || IMAGES.length <= 1) return;
+    const navigate = (direction, options = {}) => {
+      if (isAnimating || IMAGES.length <= 1) return false;
+      const nextIndex = direction === 'next'
+        ? activeIndex + 1
+        : activeIndex - 1;
+      if (options.clamp && (nextIndex < 0 || nextIndex >= IMAGES.length)) return false;
 
       isAnimating = true;
       if (prevBtn) prevBtn.disabled = true;
       if (nextBtn) nextBtn.disabled = true;
 
-      if (direction === 'next') {
-        activeIndex = (activeIndex + 1) % IMAGES.length;
-      } else {
-        activeIndex = (activeIndex + IMAGES.length - 1) % IMAGES.length;
-      }
+      activeIndex = options.clamp
+        ? Math.max(0, Math.min(IMAGES.length - 1, nextIndex))
+        : direction === 'next'
+          ? (activeIndex + 1) % IMAGES.length
+          : (activeIndex + IMAGES.length - 1) % IMAGES.length;
 
       render();
 
@@ -734,6 +738,7 @@
         if (prevBtn) prevBtn.disabled = false;
         if (nextBtn) nextBtn.disabled = false;
       }, 650);
+      return true;
     };
 
     const mountCarousel = () => {
@@ -768,6 +773,34 @@
     hero.addEventListener('click', (event) => {
       if (event.target.closest('.carousel-item, .partner-notes')) return;
       navigate('next');
+    });
+    window.addEventListener('keydown', (event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      event.preventDefault();
+      const moved = navigate(event.key === 'ArrowDown' ? 'next' : 'prev', { clamp: true });
+      window.parent.postMessage({
+        type: 'toonhub-boundary',
+        direction: event.key === 'ArrowDown' ? 'next' : 'prev',
+        moved
+      }, '*');
+    });
+    let wheelLock = false;
+    window.addEventListener('wheel', (event) => {
+      if (Math.abs(event.deltaY) < 24) return;
+      event.preventDefault();
+      if (wheelLock) return;
+      wheelLock = true;
+      const direction = event.deltaY > 0 ? 'next' : 'prev';
+      const moved = navigate(direction, { clamp: true });
+      window.parent.postMessage({ type: 'toonhub-boundary', direction, moved }, '*');
+      window.setTimeout(() => { wheelLock = false; }, 760);
+    }, { passive: false });
+    window.addEventListener('message', (event) => {
+      if (event.data?.type !== 'toonhub-navigate') return;
+      const direction = event.data.direction === 'prev' ? 'prev' : 'next';
+      const moved = navigate(direction, { clamp: Boolean(event.data.clamp) });
+      window.parent.postMessage({ type: 'toonhub-boundary', direction, moved }, '*');
     });
     window.addEventListener('resize', handleResize);
   </script>
