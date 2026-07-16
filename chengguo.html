@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>项目成果展示</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%;height:100%;overflow:hidden;background:#020409;font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;color:#fff}
+    body{
+      background:
+        radial-gradient(circle at 18% 14%, rgba(22,91,168,.06), transparent 24%),
+        radial-gradient(circle at 70% 12%, rgba(0,174,255,.04), transparent 18%),
+        linear-gradient(180deg,#020409 0%,#010307 100%);
+    }
+    .page{
+      position:relative;
+      width:100vw;
+      height:100vh;
+      padding:22px 36px 26px 42px;
+      background:repeating-linear-gradient(90deg, rgba(255,255,255,.008) 0 1px, transparent 1px 4px);
+    }
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:54px;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;letter-spacing:-.01em}
+    .brand-mark{
+      width:31px;height:31px;border:3px solid #fff;border-radius:50%;position:relative;flex:0 0 auto;
+    }
+    .brand-mark:after{
+      content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+      width:10px;height:10px;border-radius:50%;background:#fff;
+    }
+    .nav{
+      display:flex;align-items:center;gap:24px;padding:12px 22px;border-radius:999px;
+      border:1px solid rgba(92,223,255,.16);color:rgba(255,255,255,.92);font-size:13px;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+    .nav .arrow{font-size:18px;line-height:1;margin-left:-8px}
+
+    .layout{
+      display:grid;grid-template-columns:220px 1fr;gap:34px;height:calc(100vh - 110px);
+    }
+    .sidebar{
+      padding-top:70px;display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .section-index{
+      font-size:72px;line-height:1;font-weight:300;letter-spacing:-.05em;color:#12c8ff;margin-bottom:22px;
+    }
+    .section-title{
+      font-size:31px;line-height:1.15;font-weight:700;letter-spacing:-.03em;white-space:nowrap;margin-bottom:12px;
+    }
+    .section-sub{
+      font-size:17px;line-height:1.15;color:rgba(255,255,255,.86);letter-spacing:.03em;margin-bottom:22px;
+    }
+    .line{width:54px;height:2px;background:#08d9ff;box-shadow:0 0 10px rgba(8,217,255,.46);margin-bottom:24px}
+    .desc{
+      width:160px;font-size:15px;line-height:1.88;color:rgba(255,255,255,.92);margin-bottom:34px;
+    }
+    .line.long{width:72px;margin-bottom:0}
+    .footer-tag{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.38);font-size:14px;padding-bottom:8px}
+    .footer-tag .slashes{font-weight:700;font-size:28px;line-height:1;letter-spacing:-.18em;color:#14d4ff}
+
+    .content{display:flex;align-items:flex-start;justify-content:center;padding-top:36px;padding-right:10px}
+    .cards{width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+    .card{
+      width:100%;aspect-ratio:9/16;border-radius:10px;position:relative;
+      background:rgba(0,0,0,0.02);
+      border:2px solid transparent;
+      background-image:
+        linear-gradient(#020409,#020409),
+        linear-gradient(180deg,#47dbff 0%,#9b64ff 100%);
+      background-origin:border-box;
+      background-clip:padding-box,border-box;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),0 0 12px rgba(83,120,255,.05);
+    }
+
+    @media (max-width: 1500px){
+      .layout{grid-template-columns:205px 1fr;gap:24px}
+      .cards{gap:20px}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>DesignPro</div>
+      </div>
+      <nav class="nav">
+        <span>Home</span>
+        <span>About Us</span>
+        <span>Courses</span>
+        <span>Instructors</span>
+        <span>Testimonials</span>
+        <span>Blog</span>
+        <span>Contact us</span>
+        <span class="arrow">→</span>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <div>
+          <div class="section-index">02</div>
+          <div class="section-title">项目成果展示</div>
+          <div class="section-sub">PROJECT WORKS</div>
+          <div class="line"></div>
+          <div class="desc">精选成功案例，展示我们如何将创新设计转化为商业价值。</div>
+          <div class="line long"></div>
+        </div>
+
+        <div class="footer-tag">
+          <span class="slashes">///</span>
+          <span>NEXT-GEN DESIGN</span>
+        </div>
+      </aside>
+
+      <section class="content">
+        <div class="cards">
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

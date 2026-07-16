@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOONHUB PPT Theme - 5 Characters</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body, #app {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000000;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 56% 42%, rgba(100, 206, 251, 0.24) 0%, rgba(34, 111, 199, 0.16) 28%, transparent 55%),
+        radial-gradient(circle at 30% 76%, rgba(119, 82, 255, 0.18) 0%, rgba(74, 44, 180, 0.12) 34%, transparent 62%),
+        linear-gradient(135deg, #020409 0%, #06101c 36%, #0b1830 62%, #010307 100%);
+    }
+
+    .theme-video {
+      display: none;
+    }
+
+    .video-mask {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.04) 42%, rgba(0,0,0,0.6) 100%),
+        radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.08) 48%, rgba(0,0,0,0.72) 100%);
+    }
+
+    .active-glow {
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      z-index: 1;
+      width: min(68vw, 900px);
+      height: min(68vw, 900px);
+      min-width: 420px;
+      min-height: 420px;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      background: #64CEFB;
+      opacity: 0.18;
+      filter: blur(96px);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .floor-glow {
+      position: absolute;
+      left: 50%;
+      bottom: -22%;
+      z-index: 1;
+      width: 82vw;
+      height: 34vw;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: rgba(100, 206, 251, 0.12);
+      filter: blur(72px);
+      pointer-events: none;
+    }
+
+    .grain {
+      position: absolute;
+      inset: 0;
+      z-index: 50;
+      opacity: 0.33;
+      pointer-events: none;
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+    }
+
+    .container {
+      width: calc(100% - 80px);
+      max-width: none;
+      margin: 0 auto;
+    }
+
+    .navbar {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 60;
+      width: 100%;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 0 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border: 2px solid rgba(255, 255, 255, 0.92);
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(100, 206, 251, 0.16);
+    }
+
+    .logo-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 0 16px rgba(100, 206, 251, 0.7);
+    }
+
+    .logo-text {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .nav-pill {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px;
+      border: 1px solid #374151;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.76);
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .menu-button {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #374151;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.18);
+      color: rgba(255, 255, 255, 0.82);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: color 0.3s ease;
+    }
+
+    .menu-button:hover {
+      color: #ffffff;
+    }
+
+    .ghost-text {
+      position: absolute;
+      inset-inline: 0;
+      top: 20%;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      user-select: none;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(76px, 18vw, 250px);
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.09);
+      line-height: 0.88;
+      text-transform: uppercase;
+      letter-spacing: -0.075em;
+      white-space: nowrap;
+      text-shadow: 0 0 36px rgba(100, 206, 251, 0.12);
+    }
+
+    .ghost-text .shiny {
+      color: transparent;
+      background-image: linear-gradient(
+        100deg,
+        rgba(100, 206, 251, 0.16) 0%,
+        rgba(100, 206, 251, 0.18) 35%,
+        rgba(255, 255, 255, 0.36) 50%,
+        rgba(100, 206, 251, 0.18) 65%,
+        rgba(100, 206, 251, 0.16) 100%
+      );
+      background-size: 250% 100%;
+      background-position: 200% 50%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shinySweep 3s linear infinite;
+    }
+
+    @keyframes shinySweep {
+      0% { background-position: 200% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .carousel {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+    }
+
+    .carousel-item {
+      position: absolute;
+      aspect-ratio: 0.6 / 1;
+      transition:
+        transform 650ms cubic-bezier(0.4, 0, 0.2, 1),
+        filter 650ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 650ms cubic-bezier(0.4, 0, 0.2, 1),
+        left 650ms cubic-bezier(0.4, 0, 0.2, 1),
+        bottom 650ms cubic-bezier(0.4, 0, 0.2, 1),
+        height 650ms cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform, filter, opacity;
+    }
+
+    .carousel-item::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 2%;
+      width: 72%;
+      height: 20%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: rgba(0,0,0,0.42);
+      filter: blur(24px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: bottom center;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+      filter:
+        drop-shadow(0 30px 46px rgba(0,0,0,0.48))
+        drop-shadow(0 0 18px rgba(86, 178, 236, 0.14));
+    }
+
+    .partner-notes {
+      display: none;
+    }
+
+    .partner-note {
+      display: grid;
+      grid-template-rows: auto auto auto;
+      gap: 13px;
+      width: 380px;
+      color: #ffffff;
+      user-select: none;
+    }
+
+    .partner-avatar {
+      width: 168px;
+      height: 168px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.52);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.24),
+        0 0 22px rgba(100,206,251,0.16);
+    }
+
+    .partner-avatar img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: 50% 18%;
+      transform: scale(1.32);
+    }
+
+    .partner-name {
+      font-size: 48px;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .partner-role {
+      font-size: 24px;
+      line-height: 1.35;
+      font-weight: 500;
+      color: rgba(255,255,255,0.68);
+      letter-spacing: 0.04em;
+    }
+
+    .controls {
+      display: none;
+    }
+
+    .nav-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      border: 1px solid #374151;
+      background: rgba(0, 0, 0, 0.26);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(14px) saturate(120%);
+      -webkit-backdrop-filter: blur(14px) saturate(120%);
+      box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.18),
+        0 0 22px rgba(100,206,251,0.08);
+      transition:
+        transform 150ms ease,
+        background-color 150ms ease,
+        border-color 150ms ease,
+        opacity 150ms ease;
+    }
+
+    .nav-btn:hover {
+      transform: scale(1.08);
+      border-color: rgba(100, 206, 251, 0.78);
+      background: rgba(100, 206, 251, 0.12);
+    }
+
+    .nav-btn:disabled {
+      cursor: default;
+      opacity: 0.72;
+    }
+
+    .discover {
+      display: none;
+    }
+
+    .discover:hover {
+      background: #111827;
+      border-color: rgba(100, 206, 251, 0.7);
+      transform: translateY(-1px);
+    }
+
+    .discover svg {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+      transition: transform 0.3s ease;
+    }
+
+    .discover:hover svg {
+      transform: translateX(4px);
+    }
+
+    @media (max-width: 1248px) {
+      .container {
+        width: calc(100% - 48px);
+      }
+
+      .controls {
+        left: 24px;
+      }
+
+      .discover {
+        right: 24px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-pill {
+        display: none;
+      }
+
+      .menu-button {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 639px) {
+      .nav-inner {
+        padding: 18px 16px;
+      }
+
+      .container {
+        width: calc(100% - 32px);
+      }
+
+      .theme-video {
+        opacity: 0.64;
+      }
+
+      .video-mask {
+        background:
+          linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.82) 100%),
+          radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.08) 42%, rgba(0,0,0,0.76) 100%);
+      }
+
+      .ghost-text {
+        top: 23%;
+        font-size: clamp(70px, 28vw, 120px);
+        letter-spacing: -0.08em;
+      }
+
+      .active-glow {
+        top: 48%;
+        width: 120vw;
+        height: 120vw;
+        min-width: 0;
+        min-height: 0;
+        opacity: 0.18;
+      }
+
+      .controls {
+        left: 16px;
+        bottom: 24px;
+        gap: 10px;
+      }
+
+      .nav-btn {
+        width: 46px;
+        height: 46px;
+      }
+
+      .discover {
+        right: 16px;
+        bottom: 24px;
+        padding: 11px 14px;
+        font-size: 12px;
+      }
+
+      .discover svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <main class="hero">
+      <video
+        class="theme-video"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
+
+      <div class="video-mask"></div>
+      <div class="active-glow"></div>
+      <div class="floor-glow"></div>
+      <div class="grain"></div>
+
+      <div class="hero-content">
+        <nav class="navbar">
+          <div class="container nav-inner">
+            <a href="#" class="logo" aria-label="DesignPro Home">
+              <span class="logo-mark">
+                <span class="logo-dot"></span>
+              </span>
+              <span class="logo-text">DesignPro</span>
+            </a>
+
+            <div class="nav-pill" aria-label="Navigation">
+              <a href="#" class="nav-link">Home</a>
+              <a href="#" class="nav-link">About Us</a>
+              <a href="#" class="nav-link">Courses</a>
+              <a href="#" class="nav-link">Instructors</a>
+              <a href="#" class="nav-link">Testimonials</a>
+              <a href="#" class="nav-link">Blog</a>
+              <a href="#" class="nav-link">Contact us -></a>
+            </div>
+
+            <button class="menu-button" type="button" aria-label="Open menu">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12h16"></path>
+                <path d="M4 6h16"></path>
+                <path d="M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </nav>
+
+        <div class="ghost-text">
+          <span class="shiny">Team Partner</span>
+        </div>
+
+        <div class="carousel" id="carousel"></div>
+
+        <div class="partner-notes" aria-label="Team partner information">
+          <article class="partner-note">
+            <div class="partner-avatar">
+              <img id="partnerAvatar" alt="Team partner avatar" />
+            </div>
+            <div class="partner-name" id="partnerName">Mia Lin</div>
+            <div class="partner-role" id="partnerRole">Creative Partner</div>
+          </article>
+        </div>
+
+        <div class="controls">
+          <button class="nav-btn" id="prevBtn" type="button" aria-label="Previous figurine">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 19-7-7 7-7"></path>
+              <path d="M19 12H5"></path>
+            </svg>
+          </button>
+
+          <button class="nav-btn" id="nextBtn" type="button" aria-label="Next figurine">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+
+        <a class="discover" href="#" aria-label="Discover TOONHUB">
+          <span>Discover Collection</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const IMAGES = [
+      {
+        src: 'assets/mia-partner.webp'
+      },
+      {
+        src: 'assets/noah-partner.webp'
+      },
+      {
+        src: 'assets/team-partner-woman-01.webp',
+        scale: 1,
+        centerBottomMobile: '8%',
+        centerBottomDesktop: '-9%'
+      },
+      {
+        src: 'assets/team-partner-woman-02.webp',
+        scale: 1.14
+      },
+      {
+        src: 'assets/team-partner-woman-03.webp',
+        scale: 1.12
+      }
+    ];
+
+    const carousel = document.getElementById('carousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const hero = document.querySelector('.hero');
+    const partnerAvatar = document.getElementById('partnerAvatar');
+    const partnerName = document.getElementById('partnerName');
+    const partnerRole = document.getElementById('partnerRole');
+
+    const PARTNERS = [
+      { name: '许康元', role: '渲染A组中级组长', noteLeft: '28%', noteTop: '47%' },
+      { name: '金宏文', role: '渲染A组高级渲染专员', noteLeft: '28%', noteTop: '47%' },
+      { name: '成员 03', role: '备注待补充', noteLeft: '28%', noteTop: '47%' },
+      { name: '成员 04', role: '备注待补充', noteLeft: '28%', noteTop: '47%' },
+      { name: '成员 05', role: '备注待补充', noteLeft: '28%', noteTop: '47%' }
+    ];
+
+    let activeIndex = 0;
+    let isAnimating = false;
+    let isMobile = window.innerWidth < 640;
+    let items = [];
+
+    const preloadImages = () => {
+      IMAGES.forEach((item) => {
+        const image = new Image();
+        image.src = item.src;
+      });
+    };
+
+    const getRole = (index) => {
+      const offset = (index - activeIndex + IMAGES.length) % IMAGES.length;
+      if (offset === 0) return 'center';
+      if (offset === 1) return 'side';
+      return 'hidden';
+    };
+
+    const getStyleByRole = (role, index) => {
+      const imageScale = IMAGES[index]?.scale || 1;
+      if (role === 'center') {
+        return {
+          left: '50%',
+          bottom: isMobile
+            ? (IMAGES[index]?.centerBottomMobile || '18%')
+            : (IMAGES[index]?.centerBottomDesktop || '-1%'),
+          height: isMobile ? '60%' : '90%',
+          transform: `translateX(-50%) scale(${(isMobile ? 1.22 : 1.56) * imageScale})`,
+          filter: 'blur(0px)',
+          opacity: '1',
+          zIndex: '20',
+          pointerEvents: 'auto'
+        };
+      }
+
+      if (role === 'hidden') {
+        return {
+          left: '72%',
+          bottom: '12%',
+          height: '28%',
+          transform: 'translateX(-50%) scale(0.82)',
+          filter: 'blur(4px)',
+          opacity: '0',
+          zIndex: '5',
+          pointerEvents: 'none'
+        };
+      }
+
+      return {
+        left: isMobile ? '80%' : '72%',
+        bottom: isMobile ? '30%' : '12%',
+        height: isMobile ? '18%' : '28%',
+        transform: `translateX(-50%) scale(${imageScale})`,
+        filter: 'blur(2px) saturate(0.76) brightness(0.86)',
+        opacity: '0.62',
+        zIndex: '10',
+        pointerEvents: 'auto'
+      };
+    };
+
+    const applyStyle = (element, style) => {
+      Object.assign(element.style, style);
+    };
+
+    const updatePartnerNote = () => {
+      const partner = PARTNERS[activeIndex] || PARTNERS[0];
+      const image = IMAGES[activeIndex] || IMAGES[0];
+      if (partnerAvatar && image) partnerAvatar.src = image.src;
+      if (partnerAvatar && partner) partnerAvatar.alt = `${partner.name} avatar`;
+      if (partnerName && partner) partnerName.textContent = partner.name;
+      if (partnerRole && partner) partnerRole.textContent = partner.role;
+      const partnerNotes = document.querySelector('.partner-notes');
+      if (partnerNotes && partner) {
+        partnerNotes.style.left = partner.noteLeft;
+        partnerNotes.style.top = partner.noteTop;
+      }
+    };
+
+    const render = () => {
+      items.forEach((element, index) => {
+        const role = getRole(index);
+        applyStyle(element, getStyleByRole(role, index));
+      });
+      updatePartnerNote();
+      window.parent.postMessage({ type: 'toonhub-partner-change', index: activeIndex }, '*');
+    };
+
+    const navigate = (direction) => {
+      if (isAnimating || IMAGES.length <= 1) return;
+
+      isAnimating = true;
+      if (prevBtn) prevBtn.disabled = true;
+      if (nextBtn) nextBtn.disabled = true;
+
+      if (direction === 'next') {
+        activeIndex = (activeIndex + 1) % IMAGES.length;
+      } else {
+        activeIndex = (activeIndex + IMAGES.length - 1) % IMAGES.length;
+      }
+
+      render();
+
+      window.setTimeout(() => {
+        isAnimating = false;
+        if (prevBtn) prevBtn.disabled = false;
+        if (nextBtn) nextBtn.disabled = false;
+      }, 650);
+    };
+
+    const mountCarousel = () => {
+      carousel.innerHTML = '';
+
+      items = IMAGES.map((item, index) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'carousel-item';
+
+        const image = document.createElement('img');
+        image.src = item.src;
+        image.alt = PARTNERS[index]?.name || '';
+        image.draggable = false;
+
+        wrapper.appendChild(image);
+        carousel.appendChild(wrapper);
+
+        return wrapper;
+      });
+
+      render();
+    };
+
+    const handleResize = () => {
+      isMobile = window.innerWidth < 640;
+      render();
+    };
+
+    preloadImages();
+    mountCarousel();
+
+    hero.addEventListener('click', (event) => {
+      if (event.target.closest('.carousel-item, .partner-notes')) return;
+      navigate('next');
+    });
+    window.addEventListener('resize', handleResize);
+  </script>
+</body>
+</html>

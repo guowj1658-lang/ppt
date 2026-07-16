@@ -1,0 +1,5 @@
+preview-backup-*.html
+*.tmp
+.DS_Store
+Thumbs.db
+.tools/libwebp/
