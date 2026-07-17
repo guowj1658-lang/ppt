@@ -3,3 +3,5 @@ preview-backup-*.html
 .DS_Store
 Thumbs.db
 .tools/libwebp/
+
+.vercel
