@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta http-equiv="refresh" content="0; url=preview.html">
@@ -524,6 +524,51 @@
       pointer-events: none;
     }
 
+    .growth-blank-page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 76% 24%, rgba(100, 206, 251, 0.18), transparent 32%),
+        radial-gradient(circle at 22% 78%, rgba(112, 84, 255, 0.18), transparent 36%),
+        linear-gradient(180deg, #010307 0%, #061022 52%, #010307 100%);
+    }
+
+    .growth-blank-page::after {
+      content: none;
+    }
+
+    .growth-blank-inner {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 96px), 1700px);
+      min-height: calc(100vh - 104px);
+      margin: 52px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .growth-blank-title {
+      margin: 0;
+      width: 100%;
+      max-width: 96vw;
+      font-size: clamp(58px, 5.1vw, 106px);
+      line-height: 1.05;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+      text-shadow: 0 0 34px rgba(100, 206, 251, .12);
+    }
+
+    .growth-blank-subtitle {
+      margin: 24px 0 0;
+      font-size: clamp(22px, 1.45vw, 30px);
+      line-height: 1.78;
+      font-weight: 400;
+      color: rgba(205, 220, 246, 0.78);
+    }
+
     .growth-detail-inner {
       position: relative;
       z-index: 1;
@@ -576,8 +621,8 @@
 
     .growth-detail-note-item {
       display: grid;
-      grid-template-columns: 66px minmax(0, 1fr);
-      gap: 22px;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: 26px;
       align-items: center;
       padding: 28px 0;
       border-top: 1px solid rgba(100, 206, 251, 0.18);
@@ -588,23 +633,23 @@
     }
 
     .growth-detail-note-index {
-      font-size: clamp(38px, 3.4vw, 60px);
+      font-size: clamp(50px, 4.1vw, 76px);
       line-height: 1;
       font-weight: 300;
       color: #12c8ff;
     }
 
     .growth-detail-note-title {
-      margin: 0 0 9px;
-      font-size: clamp(21px, 1.55vw, 30px);
+      margin: 0 0 12px;
+      font-size: clamp(28px, 2.05vw, 40px);
       line-height: 1.25;
       font-weight: 700;
       color: #ffffff;
     }
 
     .growth-detail-note-text {
-      font-size: clamp(15px, 1vw, 18px);
-      line-height: 1.85;
+      font-size: clamp(19px, 1.28vw, 24px);
+      line-height: 1.78;
       color: rgba(255,255,255,.56);
     }
 
@@ -1951,6 +1996,156 @@
       color: #ffffff;
     }
 
+    .works-remark-page .works-page-inner {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1.5fr);
+      gap: clamp(42px, 5vw, 96px);
+      align-items: center;
+      min-height: 100vh;
+      padding: clamp(34px, 4vw, 72px) 0;
+    }
+
+    .works-remark-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+      padding-left: clamp(52px, 5.2vw, 104px);
+    }
+
+    .works-remark-title {
+      margin: 0 0 36px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid rgba(100,206,251,.18);
+      font-size: clamp(30px, 2.8vw, 54px);
+      line-height: 1.12;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .works-remark-list {
+      display: grid;
+      gap: 34px;
+    }
+
+    .works-remark-item {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .works-remark-index {
+      font-size: clamp(42px, 4vw, 68px);
+      line-height: 0.95;
+      font-weight: 300;
+      color: #12c8ff;
+      text-shadow: 0 0 18px rgba(18, 200, 255, 0.24);
+    }
+
+    .works-remark-heading {
+      margin: 0 0 8px;
+      font-size: clamp(22px, 1.7vw, 32px);
+      line-height: 1.2;
+      font-weight: 760;
+      color: #ffffff;
+    }
+
+    .works-remark-text {
+      margin: 0;
+      font-size: clamp(15px, 1vw, 18px);
+      line-height: 1.75;
+      color: rgba(255,255,255,.62);
+    }
+
+    .works-remark-frames {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(22px, 2.2vw, 34px);
+      align-items: center;
+    }
+
+    .works-remark-frame {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      min-height: 420px;
+      border-radius: 10px;
+      border: 1px solid rgba(18, 200, 255, 0.72);
+      background: rgba(2, 4, 9, 0.18);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.015), 0 0 10px rgba(18, 200, 255, 0.04);
+    }
+
+    .growth-detail-note-index,
+    .ai-change-num,
+    .works-remark-index {
+      font-size: clamp(50px, 4.1vw, 76px);
+      line-height: 1;
+      font-weight: 300;
+      color: #12c8ff;
+      text-shadow: 0 0 18px rgba(18, 200, 255, 0.22);
+    }
+
+    .growth-detail-note-title,
+    .growth-detail-note-title *,
+    .ai-change-note h2,
+    .works-remark-heading {
+      font-size: clamp(28px, 2.05vw, 40px) !important;
+      line-height: 1.25;
+      font-weight: 800;
+      color: #ffffff !important;
+    }
+
+    .growth-detail-note,
+    .growth-detail-note-text,
+    .ai-change-note p,
+    .works-remark-text {
+      font-size: clamp(19px, 1.28vw, 24px);
+      line-height: 1.78;
+      font-weight: 400;
+      color: rgba(205, 220, 246, 0.78);
+    }
+
+    .works-remark-page .works-remark-title {
+      margin-bottom: 18px;
+      padding-bottom: 28px;
+    }
+
+    .works-remark-page .works-remark-list {
+      gap: 0;
+    }
+
+    .works-remark-page .works-remark-item {
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      padding: 30px 0 32px;
+      border-top: 1px solid rgba(100, 206, 251, 0.18);
+    }
+
+    .works-remark-page .works-remark-item:first-child {
+      border-top: none;
+    }
+
+    .works-remark-page .works-remark-index {
+      font-size: clamp(60px, 4.8vw, 84px);
+      line-height: 0.96;
+      font-weight: 300;
+    }
+
+    .works-remark-page .works-remark-heading {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 2.25vw, 42px) !important;
+      line-height: 1.18;
+      font-weight: 800;
+    }
+
+    .works-remark-page .works-remark-text {
+      margin: 0;
+      font-size: clamp(18px, 1.42vw, 26px);
+      line-height: 1.7;
+      color: rgba(205, 220, 246, 0.82);
+    }
+
     .product-compare-page {
       position: relative;
       width: 100%;
@@ -2351,6 +2546,18 @@
       background-position: center !important;
       background-repeat: no-repeat !important;
     }
+
+    .ai-project-frame[data-media-id="media-45"] {
+      background-position: 68% 50% !important;
+    }
+
+    .ai-project-frame[data-media-id="media-46"] {
+      background-position: 58% 50% !important;
+    }
+
+    .ai-project-frame[data-media-id="media-48"] {
+      background-position: 74% 50% !important;
+    }
     .thanks-page {
       position: relative;
       width: 100%;
@@ -2440,6 +2647,37 @@
       min-height: 0;
     }
 
+    @media (max-height: 980px) {
+      .product-compare-inner {
+        padding-top: 44px;
+        padding-bottom: 86px;
+      }
+
+      .compare-heading {
+        margin-bottom: 38px;
+      }
+
+      .compare-title {
+        font-size: clamp(38px, 3.5vw, 64px);
+      }
+
+      .compare-note {
+        margin-top: 10px;
+      }
+
+      .compare-flow {
+        min-height: 0;
+        align-items: start;
+      }
+
+      .compare-product {
+        width: min(100%, calc((100vh - 278px) * 0.8));
+        height: auto;
+        max-height: calc(100vh - 278px);
+        justify-self: center;
+      }
+    }
+
     @media (max-height: 860px) {
       .services-inner,
       .growth-detail-inner,
@@ -2453,6 +2691,34 @@
       .ai-change-title,
       .compare-heading {
         margin-bottom: 34px;
+      }
+
+      .product-compare-inner {
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+
+      .compare-heading {
+        margin-bottom: 18px;
+      }
+
+      .compare-title {
+        font-size: clamp(32px, 3vw, 52px);
+      }
+
+      .compare-note {
+        margin-top: 8px;
+      }
+
+      .compare-flow {
+        min-height: 0;
+      }
+
+      .compare-product {
+        width: min(100%, calc((100vh - 170px) * 0.8));
+        height: auto;
+        max-height: calc(100vh - 170px);
+        justify-self: center;
       }
 
       .service-row {
@@ -2568,6 +2834,31 @@
     </div>
   </main>
 
+  <section class="intro-page" aria-labelledby="intro-heading">
+    <div class="intro-inner">
+      <aside class="intro-copy">
+        <h1 class="intro-title" id="intro-heading" data-edit-id="text-16">郭万杰</h1>
+        <div class="intro-line"></div>
+        <div class="intro-meta">
+          <div class="intro-meta-item">
+            <h2 class="intro-meta-label" data-edit-id="text-17">对接部门</h2>
+            <p class="intro-meta-value" data-edit-id="text-18">天猫一部、天猫四部、天猫七部、拼多多四部</p>
+          </div>
+          <div class="intro-meta-item">
+            <h2 class="intro-meta-label" data-edit-id="text-19">对接人员</h2>
+            <p class="intro-meta-value" data-edit-id="text-20">余梅、谢思妍、李慧婷</p>
+          </div>
+          <div class="intro-meta-item">
+            <h2 class="intro-meta-label" data-edit-id="text-21">工作内容</h2>
+            <p class="intro-meta-value" data-edit-id="text-22">负责对公司产品视觉渲染呈现</p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="intro-panel" data-media-id="media-0" aria-label="个人照片区域"></div>
+    </div>
+  </section>
+
   <section class="services-page" aria-labelledby="services-heading">
     <div class="services-inner">
       <h1 class="services-heading" id="services-heading" data-edit-id="text-4">目录</h1>
@@ -2615,30 +2906,7 @@
     </div>
   </section>
 
-  <section class="intro-page" aria-labelledby="intro-heading">
-    <div class="intro-inner">
-      <aside class="intro-copy">
-        <h1 class="intro-title" id="intro-heading" data-edit-id="text-16">郭万杰</h1>
-        <div class="intro-line"></div>
-        <div class="intro-meta">
-          <div class="intro-meta-item">
-            <h2 class="intro-meta-label" data-edit-id="text-17">对接部门</h2>
-            <p class="intro-meta-value" data-edit-id="text-18">天猫一部、天猫四部、天猫七部、拼多多四部</p>
-          </div>
-          <div class="intro-meta-item">
-            <h2 class="intro-meta-label" data-edit-id="text-19">对接人员</h2>
-            <p class="intro-meta-value" data-edit-id="text-20">余梅、谢思妍、李慧婷</p>
-          </div>
-          <div class="intro-meta-item">
-            <h2 class="intro-meta-label" data-edit-id="text-21">工作内容</h2>
-            <p class="intro-meta-value" data-edit-id="text-22">负责对公司产品视觉渲染呈现</p>
-          </div>
-        </div>
-      </aside>
-
-      <div class="intro-panel" data-media-id="media-0" aria-label="个人照片区域"></div>
-    </div>
-  </section>
+  
 
   <section id="growth-timeline" class="intro-curve-page" aria-label="688成长时间轴">
     <div class="intro-curve-inner">
@@ -2774,14 +3042,39 @@
     </div>
   </section>
 
-  <section class="works-page works-cards-only">
+  <section class="works-page works-remark-page">
     <div class="works-page-inner">
-      <h2 class="works-section-title" data-edit-id="text-43">后期详情</h2>
-      <div class="works-cards">
-        <div class="works-card" data-media-id="media-5" data-saved-image="assets/embedded-fcf3e957b5c440b2.webp" style="background-image: url(&quot;assets/embedded-fcf3e957b5c440b2.webp&quot;);"></div>
-        <div class="works-card" data-media-id="media-6" data-saved-image="assets/embedded-1ee538907dbce4eb.webp" style="background-image: url(&quot;assets/embedded-1ee538907dbce4eb.webp&quot;);"></div>
-        <div class="works-card" data-media-id="media-7" data-saved-image="assets/embedded-62aab086102b30bd.webp" style="background-image: url(&quot;assets/embedded-62aab086102b30bd.webp&quot;);"></div>
-        <div class="works-card" data-media-id="media-8" data-saved-image="assets/embedded-f88186bc6f9c52fb.webp" style="background-image: url(&quot;assets/embedded-f88186bc6f9c52fb.webp&quot;);"></div>
+      <div class="works-remark-left">
+        <h2 class="works-remark-title" data-edit-id="text-86">前期详情补充</h2>
+        <div class="works-remark-list">
+          <article class="works-remark-item">
+            <div class="works-remark-index" data-edit-id="text-87">01</div>
+            <div>
+              <h3 class="works-remark-heading" data-edit-id="text-88">参考场景搭建搭建</h3>
+              <p class="works-remark-text" data-edit-id="text-89">按产品参考图还原场景关系，保证构图和使用氛围统一。</p>
+            </div>
+          </article>
+          <article class="works-remark-item">
+            <div class="works-remark-index" data-edit-id="text-90">02</div>
+            <div>
+              <h3 class="works-remark-heading" data-edit-id="text-91">添加真实材质纹理</h3>
+              <p class="works-remark-text" data-edit-id="text-92">补充材质细节与真实纹理，让画面质感更接近实拍效果。</p>
+            </div>
+          </article>
+          <article class="works-remark-item">
+            <div class="works-remark-index" data-edit-id="text-100">03</div>
+            <div>
+              <h3 class="works-remark-heading" data-edit-id="text-101">灯光不可布控</h3>
+              <p class="works-remark-text" data-edit-id="text-102">记录灯光不可控的问题，提前规避明暗层次和氛围偏差。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="works-remark-frames">
+        <div class="works-remark-frame" data-media-id="media-66"></div>
+        <div class="works-remark-frame" data-media-id="media-67"></div>
+        <div class="works-remark-frame" data-media-id="media-68"></div>
       </div>
     </div>
   </section>
@@ -2820,6 +3113,18 @@
     </div>
   </section>
 
+  <section class="works-page works-cards-only">
+    <div class="works-page-inner">
+      <h2 class="works-section-title" data-edit-id="text-43">后期详情</h2>
+      <div class="works-cards">
+        <div class="works-card" data-media-id="media-5" data-saved-image="assets/embedded-fcf3e957b5c440b2.webp" style="background-image: url(&quot;assets/embedded-fcf3e957b5c440b2.webp&quot;);"></div>
+        <div class="works-card" data-media-id="media-6" data-saved-image="assets/embedded-1ee538907dbce4eb.webp" style="background-image: url(&quot;assets/embedded-1ee538907dbce4eb.webp&quot;);"></div>
+        <div class="works-card" data-media-id="media-7" data-saved-image="assets/embedded-62aab086102b30bd.webp" style="background-image: url(&quot;assets/embedded-62aab086102b30bd.webp&quot;);"></div>
+        <div class="works-card" data-media-id="media-8" data-saved-image="assets/embedded-f88186bc6f9c52fb.webp" style="background-image: url(&quot;assets/embedded-f88186bc6f9c52fb.webp&quot;);"></div>
+      </div>
+    </div>
+  </section>
+
   <section id="mosaic-showcase" class="mosaic-page" aria-label="产品拼接展示">
     <div class="mosaic-window">
       <div class="mosaic-track">
@@ -2838,6 +3143,7 @@
           <div class="mosaic-tile light ratio-9x16 is-extended" data-media-id="media-26"></div>
           <div class="mosaic-tile accent ratio-9x16" data-media-id="media-41"></div>
           <div class="mosaic-tile blue ratio-9x16" data-media-id="media-42"></div>
+          <div class="mosaic-tile light ratio-1x1" data-media-id="media-71"></div>
         </div>
 
       </div>
@@ -2896,10 +3202,10 @@
         <div class="ai-project-title" data-edit-id="text-57">初入Ai动画标题</div>
       </div>
       <div class="ai-project-grid portrait-four">
-        <div class="ai-project-frame" data-media-id="media-45"></div>
-        <div class="ai-project-frame" data-media-id="media-46"></div>
-        <div class="ai-project-frame" data-media-id="media-47"></div>
-        <div class="ai-project-frame" data-media-id="media-48"></div>
+        <div class="ai-project-frame" data-media-id="media-45" data-saved-image="assets/works-after-01-supor.gif" style="background-image: url(&quot;assets/works-after-01-supor.gif&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-46" data-saved-image="assets/works-after-02-massage.gif" style="background-image: url(&quot;assets/works-after-02-massage.gif&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-47" data-saved-image="assets/works-after-03-product.gif" style="background-image: url(&quot;assets/works-after-03-product.gif&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-48" data-saved-image="assets/works-after-04-hyundai.gif" style="background-image: url(&quot;assets/works-after-04-hyundai.gif&quot;);"></div>
       </div>
     </article>
   </section>
@@ -2988,7 +3294,7 @@
           <div class="growth-detail-note-item">
             <div class="growth-detail-note-index" data-edit-id="text-73">02</div>
             <div>
-              <div class="growth-detail-note-title" data-edit-id="text-74"><div><span style="font-size: clamp(21px, 1.55vw, 30px); background-color: initial;">总结同事分享会</span></div></div>
+              <div class="growth-detail-note-title" data-edit-id="text-74"><div><span style="font-size: clamp(28px, 2.05vw, 40px); background-color: initial;">总结同事分享会</span></div></div>
               <div class="growth-detail-note-text" data-edit-id="text-75">学习康元包括其他同事的分享会流程，思考他们抓的主题和痛点在哪，结合自己对接问题再整理出自己的</div>
             </div>
           </div>
@@ -3027,6 +3333,43 @@
       <div class="growth-detail-frames" aria-label="AI持续学习展示区域">
         <div class="growth-detail-frame" data-media-id="media-63"></div>
         <div class="growth-detail-frame" data-media-id="media-64"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="growth-detail-page growth-blank-page" aria-label="空白页">
+    <div class="growth-blank-inner">
+      <h2 class="growth-blank-title" data-edit-id="text-103">迷茫勿驻足，小事自引前路</h2>
+      <p class="growth-blank-subtitle" data-edit-id="text-104">遇到瓶颈时一定要选择动起来，不知道方向的时，那就从小事开始做起</p>
+    </div>
+  </section>
+
+  <section class="growth-detail-page" aria-label="AI方法沉淀">
+    <div class="growth-detail-inner">
+      <div class="growth-detail-copy">
+        <div class="growth-detail-heading">
+          <h2 class="growth-detail-title" data-edit-id="text-93">AI方法沉淀</h2>
+        </div>
+        <div class="growth-detail-notes">
+          <div class="growth-detail-note-item">
+            <div class="growth-detail-note-index" data-edit-id="text-94">01</div>
+            <div>
+              <div class="growth-detail-note-title" data-edit-id="text-95">流程复盘</div>
+              <div class="growth-detail-note-text" data-edit-id="text-96">把跑通的 AI 制作流程整理成固定方法，方便后续项目快速复用。</div>
+            </div>
+          </div>
+          <div class="growth-detail-note-item">
+            <div class="growth-detail-note-index" data-edit-id="text-97">02</div>
+            <div>
+              <div class="growth-detail-note-title" data-edit-id="text-98">素材沉淀</div>
+              <div class="growth-detail-note-text" data-edit-id="text-99">持续积累可参考的提示词、案例和效果图，形成自己的资料库。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="growth-detail-frames" aria-label="AI方法沉淀展示区域">
+        <div class="growth-detail-frame" data-media-id="media-69"></div>
+        <div class="growth-detail-frame" data-media-id="media-70"></div>
       </div>
     </div>
   </section>
@@ -3077,6 +3420,7 @@
         ".ai-change-rect",
         ".mosaic-tile",
         ".ai-project-frame",
+        ".works-remark-frame",
         ".growth-detail-frame"
       ].join(",");
 
@@ -3135,11 +3479,7 @@
         URL.revokeObjectURL(url);
       };
 
-      const getBackupName = () => {
-        const now = new Date();
-        const pad = (value) => String(value).padStart(2, "0");
-        return `preview-backup-${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}.html`;
-      };
+      const getBackupName = () => "preview-backup-latest.html";
 
       const getCurrentHtmlName = () => {
         const name = decodeURIComponent(window.location.pathname.split("/").pop() || "").trim();
@@ -3153,6 +3493,7 @@
       };
 
       let htmlFileHandle = null;
+      let backupFileHandle = null;
       let htmlDirectoryHandle = null;
       let backupDirectoryHandle = null;
 
@@ -3180,13 +3521,14 @@
           return;
         }
         if ("showSaveFilePicker" in window) {
-          const backupHandle = await window.showSaveFilePicker({
+          const backupHandle = backupFileHandle || await window.showSaveFilePicker({
               suggestedName: backupName,
               types: [{
                 description: "HTML file",
                 accept: { "text/html": [".html"] }
               }]
             });
+          backupFileHandle = backupHandle;
           await writeHtmlFile(backupHandle, html);
           const handle = htmlFileHandle || await window.showSaveFilePicker({
               suggestedName: mainFileName,
@@ -3353,3 +3695,4 @@
 
 
 </body></html>
+

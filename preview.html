@@ -522,6 +522,51 @@
       pointer-events: none;
     }
 
+    .growth-blank-page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 76% 24%, rgba(100, 206, 251, 0.18), transparent 32%),
+        radial-gradient(circle at 22% 78%, rgba(112, 84, 255, 0.18), transparent 36%),
+        linear-gradient(180deg, #010307 0%, #061022 52%, #010307 100%);
+    }
+
+    .growth-blank-page::after {
+      content: none;
+    }
+
+    .growth-blank-inner {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 96px), 1700px);
+      min-height: calc(100vh - 104px);
+      margin: 52px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .growth-blank-title {
+      margin: 0;
+      width: 100%;
+      max-width: 96vw;
+      font-size: clamp(58px, 5.1vw, 106px);
+      line-height: 1.05;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+      text-shadow: 0 0 34px rgba(100, 206, 251, .12);
+    }
+
+    .growth-blank-subtitle {
+      margin: 24px 0 0;
+      font-size: clamp(22px, 1.45vw, 30px);
+      line-height: 1.78;
+      font-weight: 400;
+      color: rgba(205, 220, 246, 0.78);
+    }
+
     .growth-detail-inner {
       position: relative;
       z-index: 1;
@@ -574,31 +619,31 @@
 
     .growth-detail-note-item {
       display: grid;
-      grid-template-columns: 66px minmax(0, 1fr);
-      gap: 22px;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: 26px;
       align-items: center;
       padding: 28px 0;
       border-top: 1px solid rgba(100, 206, 251, 0.18);
     }
 
     .growth-detail-note-index {
-      font-size: clamp(38px, 3.4vw, 60px);
+      font-size: clamp(50px, 4.1vw, 76px);
       line-height: 1;
       font-weight: 300;
       color: #12c8ff;
     }
 
     .growth-detail-note-title {
-      margin: 0 0 9px;
-      font-size: clamp(21px, 1.55vw, 30px);
+      margin: 0 0 12px;
+      font-size: clamp(28px, 2.05vw, 40px);
       line-height: 1.25;
       font-weight: 700;
       color: #ffffff;
     }
 
     .growth-detail-note-text {
-      font-size: clamp(15px, 1vw, 18px);
-      line-height: 1.85;
+      font-size: clamp(19px, 1.28vw, 24px);
+      line-height: 1.78;
       color: rgba(255,255,255,.56);
     }
 
@@ -1949,6 +1994,156 @@
       color: #ffffff;
     }
 
+    .works-remark-page .works-page-inner {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1.5fr);
+      gap: clamp(42px, 5vw, 96px);
+      align-items: center;
+      min-height: 100vh;
+      padding: clamp(34px, 4vw, 72px) 0;
+    }
+
+    .works-remark-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+      padding-left: clamp(52px, 5.2vw, 104px);
+    }
+
+    .works-remark-title {
+      margin: 0 0 36px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid rgba(100,206,251,.18);
+      font-size: clamp(30px, 2.8vw, 54px);
+      line-height: 1.12;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .works-remark-list {
+      display: grid;
+      gap: 34px;
+    }
+
+    .works-remark-item {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .works-remark-index {
+      font-size: clamp(42px, 4vw, 68px);
+      line-height: 0.95;
+      font-weight: 300;
+      color: #12c8ff;
+      text-shadow: 0 0 18px rgba(18, 200, 255, 0.24);
+    }
+
+    .works-remark-heading {
+      margin: 0 0 8px;
+      font-size: clamp(22px, 1.7vw, 32px);
+      line-height: 1.2;
+      font-weight: 760;
+      color: #ffffff;
+    }
+
+    .works-remark-text {
+      margin: 0;
+      font-size: clamp(15px, 1vw, 18px);
+      line-height: 1.75;
+      color: rgba(255,255,255,.62);
+    }
+
+    .works-remark-frames {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(22px, 2.2vw, 34px);
+      align-items: center;
+    }
+
+    .works-remark-frame {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      min-height: 420px;
+      border-radius: 10px;
+      border: 1px solid rgba(18, 200, 255, 0.72);
+      background: rgba(2, 4, 9, 0.18);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.015), 0 0 10px rgba(18, 200, 255, 0.04);
+    }
+
+    .growth-detail-note-index,
+    .ai-change-num,
+    .works-remark-index {
+      font-size: clamp(50px, 4.1vw, 76px);
+      line-height: 1;
+      font-weight: 300;
+      color: #12c8ff;
+      text-shadow: 0 0 18px rgba(18, 200, 255, 0.22);
+    }
+
+    .growth-detail-note-title,
+    .growth-detail-note-title *,
+    .ai-change-note h2,
+    .works-remark-heading {
+      font-size: clamp(28px, 2.05vw, 40px) !important;
+      line-height: 1.25;
+      font-weight: 800;
+      color: #ffffff !important;
+    }
+
+    .growth-detail-note,
+    .growth-detail-note-text,
+    .ai-change-note p,
+    .works-remark-text {
+      font-size: clamp(19px, 1.28vw, 24px);
+      line-height: 1.78;
+      font-weight: 400;
+      color: rgba(205, 220, 246, 0.78);
+    }
+
+    .works-remark-page .works-remark-title {
+      margin-bottom: 18px;
+      padding-bottom: 28px;
+    }
+
+    .works-remark-page .works-remark-list {
+      gap: 0;
+    }
+
+    .works-remark-page .works-remark-item {
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      padding: 30px 0 32px;
+      border-top: 1px solid rgba(100, 206, 251, 0.18);
+    }
+
+    .works-remark-page .works-remark-item:first-child {
+      border-top: none;
+    }
+
+    .works-remark-page .works-remark-index {
+      font-size: clamp(60px, 4.8vw, 84px);
+      line-height: 0.96;
+      font-weight: 300;
+    }
+
+    .works-remark-page .works-remark-heading {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 2.25vw, 42px) !important;
+      line-height: 1.18;
+      font-weight: 800;
+    }
+
+    .works-remark-page .works-remark-text {
+      margin: 0;
+      font-size: clamp(18px, 1.42vw, 26px);
+      line-height: 1.7;
+      color: rgba(205, 220, 246, 0.82);
+    }
+
     .product-compare-page {
       position: relative;
       width: 100%;
@@ -2383,6 +2578,18 @@
       background-position: center !important;
       background-repeat: no-repeat !important;
     }
+
+    .ai-project-frame[data-media-id="media-45"] {
+      background-position: 68% 50% !important;
+    }
+
+    .ai-project-frame[data-media-id="media-46"] {
+      background-position: 58% 50% !important;
+    }
+
+    .ai-project-frame[data-media-id="media-48"] {
+      background-position: 74% 50% !important;
+    }
     .thanks-page {
       position: relative;
       width: 100%;
@@ -2472,6 +2679,37 @@
       min-height: 0;
     }
 
+    @media (max-height: 980px) {
+      .product-compare-inner {
+        padding-top: 44px;
+        padding-bottom: 86px;
+      }
+
+      .compare-heading {
+        margin-bottom: 38px;
+      }
+
+      .compare-title {
+        font-size: clamp(38px, 3.5vw, 64px);
+      }
+
+      .compare-note {
+        margin-top: 10px;
+      }
+
+      .compare-flow {
+        min-height: 0;
+        align-items: start;
+      }
+
+      .compare-product {
+        width: min(100%, calc((100vh - 278px) * 0.8));
+        height: auto;
+        max-height: calc(100vh - 278px);
+        justify-self: center;
+      }
+    }
+
     @media (max-height: 860px) {
       .services-inner,
       .growth-detail-inner,
@@ -2485,6 +2723,34 @@
       .ai-change-title,
       .compare-heading {
         margin-bottom: 34px;
+      }
+
+      .product-compare-inner {
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+
+      .compare-heading {
+        margin-bottom: 18px;
+      }
+
+      .compare-title {
+        font-size: clamp(32px, 3vw, 52px);
+      }
+
+      .compare-note {
+        margin-top: 8px;
+      }
+
+      .compare-flow {
+        min-height: 0;
+      }
+
+      .compare-product {
+        width: min(100%, calc((100vh - 170px) * 0.8));
+        height: auto;
+        max-height: calc(100vh - 170px);
+        justify-self: center;
       }
 
       .service-row {
@@ -2566,7 +2832,7 @@
       <section class="top-section">
         <div class="container">
           <div class="top-grid">
-            <time class="top-date" data-live-date="" datetime="2026-07-16">2026/7/16</time>
+            <time class="top-date" data-live-date="" datetime="2026-07-20">2026/7/20</time>
 
             <div class="top-brand" aria-label="朝丝马迹">
               <img class="top-brand-logo" src="assets/zhaosimaji-logo.webp" alt="朝丝马迹">
@@ -2599,6 +2865,31 @@
       </section>
     </div>
   </main>
+
+  <section class="intro-page" aria-labelledby="intro-heading">
+    <div class="intro-inner">
+      <aside class="intro-copy">
+        <h1 class="intro-title" id="intro-heading" data-edit-id="text-16">郭万杰</h1>
+        <div class="intro-line"></div>
+        <div class="intro-meta">
+          <div class="intro-meta-item">
+            <h2 class="intro-meta-label" data-edit-id="text-17">对接部门</h2>
+            <p class="intro-meta-value" data-edit-id="text-18">天猫一部、天猫四部、天猫七部、拼多多四部</p>
+          </div>
+          <div class="intro-meta-item">
+            <h2 class="intro-meta-label" data-edit-id="text-19">对接人员</h2>
+            <p class="intro-meta-value" data-edit-id="text-20">余梅、谢思妍、李慧婷</p>
+          </div>
+          <div class="intro-meta-item">
+            <h2 class="intro-meta-label" data-edit-id="text-21">工作内容</h2>
+            <p class="intro-meta-value" data-edit-id="text-22">负责对公司产品视觉渲染呈现</p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="intro-panel" data-media-id="media-0" aria-label="个人照片区域" data-saved-image="assets/embedded-3e6cbd3e47ea8fe6.webp" style="background-image: url(&quot;assets/embedded-3e6cbd3e47ea8fe6.webp&quot;);"></div>
+    </div>
+  </section>
 
   <section class="services-page" aria-labelledby="services-heading">
     <div class="services-inner">
@@ -2647,30 +2938,7 @@
     </div>
   </section>
 
-  <section class="intro-page" aria-labelledby="intro-heading">
-    <div class="intro-inner">
-      <aside class="intro-copy">
-        <h1 class="intro-title" id="intro-heading" data-edit-id="text-16">郭万杰</h1>
-        <div class="intro-line"></div>
-        <div class="intro-meta">
-          <div class="intro-meta-item">
-            <h2 class="intro-meta-label" data-edit-id="text-17">对接部门</h2>
-            <p class="intro-meta-value" data-edit-id="text-18">天猫一部、天猫四部、天猫七部、拼多多四部</p>
-          </div>
-          <div class="intro-meta-item">
-            <h2 class="intro-meta-label" data-edit-id="text-19">对接人员</h2>
-            <p class="intro-meta-value" data-edit-id="text-20">余梅、谢思妍、李慧婷</p>
-          </div>
-          <div class="intro-meta-item">
-            <h2 class="intro-meta-label" data-edit-id="text-21">工作内容</h2>
-            <p class="intro-meta-value" data-edit-id="text-22">负责对公司产品视觉渲染呈现</p>
-          </div>
-        </div>
-      </aside>
-
-      <div class="intro-panel" data-media-id="media-0" aria-label="个人照片区域" data-saved-image="assets/embedded-3e6cbd3e47ea8fe6.webp" style="background-image: url(&quot;assets/embedded-3e6cbd3e47ea8fe6.webp&quot;);"></div>
-    </div>
-  </section>
+  
 
   <section id="growth-timeline" class="intro-curve-page" aria-label="688成长时间轴">
     <div class="intro-curve-inner">
@@ -2715,7 +2983,7 @@
     </div>
   </section>
 
-  <script id="toonhubNoteData" type="application/json">[{"name":"许康元","role":"渲染A组-中级渲染组长","avatar":"assets/embedded-2383dd93ff4618b5.webp"},{"name":"金宏文","role":"渲染A组高级渲染专员","avatar":"assets/embedded-8a7070a694827d26.webp"},{"name":"余梅","role":"设计D组-高级设计专员","avatar":"assets/embedded-2f75f2ee0d47f626.webp"},{"name":"谢思妍","role":"设计D组-高级设计专员","avatar":"assets/embedded-ab3a879ea52b9fe0.webp"},{"name":"李慧婷","role":"设计A组-设计助理","avatar":"assets/embedded-52a9d6e34f28226a.webp"}]</script>
+  <script id="toonhubNoteData" type="application/json">[{"name":"许康元","role":"渲染A组-中级渲染组长","avatar":"assets/embedded-2383dd93ff4618b5.webp"},{"name":"金宏文","role":"渲染A组-高级渲染专员","avatar":"assets/embedded-8a7070a694827d26.webp"},{"name":"余梅","role":"设计D组-高级设计专员","avatar":"assets/embedded-2f75f2ee0d47f626.webp"},{"name":"谢思妍","role":"设计D组-高级设计专员","avatar":"assets/embedded-ab3a879ea52b9fe0.webp"},{"name":"李慧婷","role":"设计A组-设计助理","avatar":"assets/embedded-52a9d6e34f28226a.webp"}]</script>
 
   <section class="chapter-page" aria-label="落地有成">
     <div class="chapter-inner">
@@ -2803,7 +3071,7 @@
 
         <section class="works-content">
           <div class="works-cards">
-            <div class="works-card" data-media-id="media-1" data-saved-image="assets/embedded-a66904aceb103545.webp" style="background-image: url(&quot;assets/embedded-a66904aceb103545.webp&quot;);"></div>
+            <div class="works-card" data-media-id="media-1" data-saved-image="assets/embedded-7ac347879621f7aa-web.webp" style="background-image: url(&quot;assets/embedded-7ac347879621f7aa-web.webp&quot;);"></div>
             <div class="works-card" data-media-id="media-2" data-saved-image="assets/embedded-877052dbdf9dcd89.webp" style="background-image: url(&quot;assets/embedded-877052dbdf9dcd89.webp&quot;);"></div>
             <div class="works-card" data-media-id="media-3" data-saved-image="assets/embedded-5dae0ea50bf4e078.webp" style="background-image: url(&quot;assets/embedded-5dae0ea50bf4e078.webp&quot;);"></div>
             <div class="works-card" data-media-id="media-4" data-saved-image="assets/embedded-a7cb95c5494b73a3.webp" style="background-image: url(&quot;assets/embedded-a7cb95c5494b73a3.webp&quot;);"></div>
@@ -2813,14 +3081,39 @@
     </div>
   </section>
 
-  <section class="works-page works-cards-only">
+  <section class="works-page works-remark-page">
     <div class="works-page-inner">
-      <h2 class="works-section-title" data-edit-id="text-43">后期详情</h2>
-      <div class="works-cards">
-        <div class="works-card" data-media-id="media-5" data-saved-image="assets/embedded-fcf3e957b5c440b2.webp" style="background-image: url(&quot;assets/embedded-fcf3e957b5c440b2.webp&quot;);"></div>
-        <div class="works-card" data-media-id="media-6" data-saved-image="assets/embedded-1ee538907dbce4eb.webp" style="background-image: url(&quot;assets/embedded-1ee538907dbce4eb.webp&quot;);"></div>
-        <div class="works-card" data-media-id="media-7" data-saved-image="assets/embedded-62aab086102b30bd.webp" style="background-image: url(&quot;assets/embedded-62aab086102b30bd.webp&quot;);"></div>
-        <div class="works-card" data-media-id="media-8" data-saved-image="assets/embedded-f88186bc6f9c52fb.webp" style="background-image: url(&quot;assets/embedded-f88186bc6f9c52fb.webp&quot;);"></div>
+      <div class="works-remark-left">
+        <h2 class="works-remark-title" data-edit-id="text-86">详情制作</h2>
+        <div class="works-remark-list">
+          <article class="works-remark-item">
+            <div class="works-remark-index" data-edit-id="text-87">01</div>
+            <div>
+              <h3 class="works-remark-heading" data-edit-id="text-88">按参考场景搭建</h3>
+              <p class="works-remark-text" data-edit-id="text-89">按产品参考图还原场景关系，保证构图和使用氛围统一。</p>
+            </div>
+          </article>
+          <article class="works-remark-item">
+            <div class="works-remark-index" data-edit-id="text-90">02</div>
+            <div>
+              <h3 class="works-remark-heading" data-edit-id="text-91">添加真实材质纹理</h3>
+              <p class="works-remark-text" data-edit-id="text-92">补充表面材质、细节纹理和真实质感</p>
+            </div>
+          </article>
+          <article class="works-remark-item">
+            <div class="works-remark-index" data-edit-id="text-100">03</div>
+            <div>
+              <h3 class="works-remark-heading" data-edit-id="text-101">场景灯光布控</h3>
+              <p class="works-remark-text" data-edit-id="text-102">还原整体氛围和质感</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="works-remark-frames">
+        <div class="works-remark-frame" data-media-id="media-66" data-saved-image="assets/embedded-544d7c9b47d41184-web.webp" style="background-image: url(&quot;assets/embedded-544d7c9b47d41184-web.webp&quot;);"></div>
+        <div class="works-remark-frame" data-media-id="media-67" data-saved-image="assets/embedded-cc17fe2f15c77b7c-web.webp" style="background-image: url(&quot;assets/embedded-cc17fe2f15c77b7c-web.webp&quot;);"></div>
+        <div class="works-remark-frame" data-media-id="media-68" data-saved-image="assets/embedded-ec815a83ab46291d-web.webp" style="background-image: url(&quot;assets/embedded-ec815a83ab46291d-web.webp&quot;);"></div>
       </div>
     </div>
   </section>
@@ -2833,11 +3126,11 @@
       </header>
 
       <div class="compare-flow">
-        <div class="compare-product" data-media-id="media-9" data-saved-image="assets/embedded-0416a6bcadf8f4ec.webp" style="background-image: url(&quot;assets/embedded-0416a6bcadf8f4ec.webp&quot;);"></div>
+        <div class="compare-product" data-media-id="media-9" data-saved-image="assets/embedded-6c155087b5a047df-web.webp" style="background-image: url(&quot;assets/embedded-6c155087b5a047df-web.webp&quot;);"></div>
         <div class="compare-marker" aria-hidden="true"></div>
         <div class="compare-product" data-media-id="media-10" data-saved-image="assets/embedded-b0505821f9faee0a.webp" style="background-image: url(&quot;assets/embedded-b0505821f9faee0a.webp&quot;);"></div>
         <div class="compare-marker" aria-hidden="true"></div>
-        <div class="compare-product" data-media-id="media-11" data-saved-image="assets/embedded-4958db5053da27b4.webp" style="background-image: url(&quot;assets/embedded-4958db5053da27b4.webp&quot;);"></div>
+        <div class="compare-product" data-media-id="media-11" data-saved-image="assets/embedded-845c47c2bc161044-web.webp" style="background-image: url(&quot;assets/embedded-845c47c2bc161044-web.webp&quot;);"></div>
       </div>
     </div>
   </section>
@@ -2855,6 +3148,18 @@
         <div class="compare-product" data-media-id="media-13" data-saved-image="assets/embedded-0087e7661637fef3.webp" style="background-image: url(&quot;assets/embedded-0087e7661637fef3.webp&quot;);"></div>
         <div class="compare-marker" aria-hidden="true"></div>
         <div class="compare-product" data-media-id="media-14" data-saved-image="assets/embedded-629f4c466305c8db.webp" style="background-image: url(&quot;assets/embedded-629f4c466305c8db.webp&quot;);"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="works-page works-cards-only">
+    <div class="works-page-inner">
+      <h2 class="works-section-title" data-edit-id="text-43">后期详情</h2>
+      <div class="works-cards">
+        <div class="works-card" data-media-id="media-5" data-saved-image="assets/embedded-fcf3e957b5c440b2.webp" style="background-image: url(&quot;assets/embedded-fcf3e957b5c440b2.webp&quot;);"></div>
+        <div class="works-card" data-media-id="media-6" data-saved-image="assets/embedded-1ee538907dbce4eb.webp" style="background-image: url(&quot;assets/embedded-1ee538907dbce4eb.webp&quot;);"></div>
+        <div class="works-card" data-media-id="media-7" data-saved-image="assets/embedded-62aab086102b30bd.webp" style="background-image: url(&quot;assets/embedded-62aab086102b30bd.webp&quot;);"></div>
+        <div class="works-card" data-media-id="media-8" data-saved-image="assets/embedded-f88186bc6f9c52fb.webp" style="background-image: url(&quot;assets/embedded-f88186bc6f9c52fb.webp&quot;);"></div>
       </div>
     </div>
   </section>
@@ -2877,6 +3182,7 @@
           <div class="mosaic-tile light ratio-9x16 is-extended" data-media-id="media-26" data-saved-image="assets/mosaic-12-5fb4ad9410.webp" style="background-image: url(&quot;assets/mosaic-12-5fb4ad9410.webp&quot;);"></div>
           <div class="mosaic-tile accent ratio-9x16" data-media-id="media-41" data-saved-image="assets/mosaic-13-92e28e5d57.webp" style="background-image: url(&quot;assets/mosaic-13-92e28e5d57.webp&quot;);"></div>
           <div class="mosaic-tile blue ratio-9x16" data-media-id="media-42" data-saved-image="assets/mosaic-14-eb38750b5b.webp" style="background-image: url(&quot;assets/mosaic-14-eb38750b5b.webp&quot;);"></div>
+          <div class="mosaic-tile light ratio-1x1" data-media-id="media-71" data-saved-image="assets/embedded-0631a4447c1c0272-web.webp" style="background-image: url(&quot;assets/embedded-0631a4447c1c0272-web.webp&quot;);"></div>
         </div>
 
       </div>
@@ -2921,7 +3227,7 @@
             <div class="ai-change-num">03</div>
             <div>
               <h2 data-edit-id="text-50">怀疑自己的能力</h2>
-              <p data-edit-id="text-51">详情制作场景和特效图都不再需要渲染，模特交互平面伙伴有自己的把控，好像在工作中我们能做的事请越来越少了</p>
+              <p data-edit-id="text-51">场景制作和特效图参与变少，模特交互平面伙伴有自己的把控，好像在工作中我们能做的事请越来越少了</p>
             </div>
           </article>
         </div>
@@ -2935,10 +3241,10 @@
         <div class="ai-project-title" data-edit-id="text-57">初入Ai动画标题</div>
       </div>
       <div class="ai-project-grid portrait-four">
-        <div class="ai-project-frame" data-media-id="media-45" data-saved-image="assets/embedded-62e78c2fe52b9ede-web.webp" style="background-image: url(&quot;assets/embedded-62e78c2fe52b9ede-web.webp&quot;);"></div>
-        <div class="ai-project-frame" data-media-id="media-46" data-saved-image="assets/embedded-8eab50658831efc8-web.webp" style="background-image: url(&quot;assets/embedded-8eab50658831efc8-web.webp&quot;);"></div>
-        <div class="ai-project-frame" data-media-id="media-47" data-saved-image="assets/embedded-0f86aa8b01c58fe2-web.webp" style="background-image: url(&quot;assets/embedded-0f86aa8b01c58fe2-web.webp&quot;);"></div>
-        <div class="ai-project-frame" data-media-id="media-48" data-saved-image="assets/embedded-687604d982da3c7e-web.webp" style="background-image: url(&quot;assets/embedded-687604d982da3c7e-web.webp&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-45" data-saved-image="assets/works-after-01-supor.gif" style="background-image: url(&quot;assets/works-after-01-supor.gif&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-46" data-saved-image="assets/works-after-02-massage.gif" style="background-image: url(&quot;assets/works-after-02-massage.gif&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-47" data-saved-image="assets/works-after-03-product.gif" style="background-image: url(&quot;assets/works-after-03-product.gif&quot;);"></div>
+        <div class="ai-project-frame" data-media-id="media-48" data-saved-image="assets/works-after-04-hyundai.gif" style="background-image: url(&quot;assets/works-after-04-hyundai.gif&quot;);"></div>
       </div>
     </article>
   </section>
@@ -3026,7 +3332,7 @@
           <div class="growth-detail-note-item">
             <div class="growth-detail-note-index" data-edit-id="text-73">02</div>
             <div>
-              <div class="growth-detail-note-title" data-edit-id="text-74"><div><span style="font-size: clamp(21px, 1.55vw, 30px); background-color: initial;">总结同事分享会</span></div></div>
+              <div class="growth-detail-note-title" data-edit-id="text-74"><div><span style="font-size: clamp(28px, 2.05vw, 40px); background-color: initial;">总结同事分享会</span></div></div>
               <div class="growth-detail-note-text" data-edit-id="text-75">学习康元包括其他同事的分享会流程，思考他们抓的主题和痛点在哪，结合自己对接问题再整理出自己的</div>
             </div>
           </div>
@@ -3056,7 +3362,7 @@
           <div class="growth-detail-note-item">
             <div class="growth-detail-note-index" data-edit-id="text-80">02</div>
             <div>
-              <div class="growth-detail-note-title" data-edit-id="text-81">Ai优先</div>
+              <div class="growth-detail-note-title" data-edit-id="text-81">Ai&nbsp; Fast</div>
               <div class="growth-detail-note-text" data-edit-id="text-82">最后在工作和生活都养成Ai优先的习惯，多去提问多去突破。</div>
             </div>
           </div>
@@ -3066,6 +3372,13 @@
         <div class="growth-detail-frame" data-media-id="media-63" data-saved-image="assets/embedded-2aeb8844d419ca80.webp" style="background-image: url(&quot;assets/embedded-2aeb8844d419ca80.webp&quot;);"></div>
         <div class="growth-detail-frame" data-media-id="media-64" data-saved-image="assets/embedded-0ad1ea2c19c62e5e.webp" style="background-image: url(&quot;assets/embedded-0ad1ea2c19c62e5e.webp&quot;);"></div>
       </div>
+    </div>
+  </section>
+
+  <section class="growth-detail-page growth-blank-page" aria-label="空白页">
+    <div class="growth-blank-inner">
+      <h2 class="growth-blank-title" data-edit-id="text-103">迷茫勿驻足，小事自引前路</h2>
+      <p class="growth-blank-subtitle" data-edit-id="text-104">遇到瓶颈时一定要选择动起来，不知道方向的时，那就从小事开始做起</p>
     </div>
   </section>
 
@@ -3115,6 +3428,7 @@
         ".ai-change-rect",
         ".mosaic-tile",
         ".ai-project-frame",
+        ".works-remark-frame",
         ".growth-detail-frame",
         ".toonhub-avatar-media"
       ].join(",");
@@ -3140,13 +3454,6 @@
       if (toonhubNotes[0] && toonhubAvatar?.dataset.savedImage && !toonhubNotes[0].avatar) {
         toonhubNotes[0].avatar = toonhubAvatar.dataset.savedImage;
       }
-      if (toonhubNotes[0] && toonhubNoteName?.textContent.trim()) {
-        toonhubNotes[0].name = toonhubNoteName.textContent.trim();
-      }
-      if (toonhubNotes[0] && toonhubNoteRole?.textContent.trim()) {
-        toonhubNotes[0].role = toonhubNoteRole.textContent.trim();
-      }
-
       const syncToonhubNoteData = () => {
         if (!toonhubNoteDataNode) return;
         toonhubNoteDataNode.textContent = JSON.stringify(toonhubNotes).replace(/</g, "\\u003c");
@@ -3243,11 +3550,7 @@
         URL.revokeObjectURL(url);
       };
 
-      const getBackupName = () => {
-        const now = new Date();
-        const pad = (value) => String(value).padStart(2, "0");
-        return `preview-backup-${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}.html`;
-      };
+      const getBackupName = () => "preview-backup-latest.html";
 
       const getCurrentHtmlName = () => {
         const name = decodeURIComponent(window.location.pathname.split("/").pop() || "").trim();
@@ -3261,6 +3564,7 @@
       };
 
       let htmlFileHandle = null;
+      let backupFileHandle = null;
       let htmlDirectoryHandle = null;
       let backupDirectoryHandle = null;
 
@@ -3288,13 +3592,14 @@
           return;
         }
         if ("showSaveFilePicker" in window) {
-          const backupHandle = await window.showSaveFilePicker({
+          const backupHandle = backupFileHandle || await window.showSaveFilePicker({
               suggestedName: backupName,
               types: [{
                 description: "HTML file",
                 accept: { "text/html": [".html"] }
               }]
             });
+          backupFileHandle = backupHandle;
           await writeHtmlFile(backupHandle, html);
           const handle = htmlFileHandle || await window.showSaveFilePicker({
               suggestedName: mainFileName,
@@ -3458,6 +3763,14 @@
       setMode("preview");
     })();
   </script>
+
+
+
+
+
+
+
+
 
 
 
