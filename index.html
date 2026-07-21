@@ -3469,8 +3469,6 @@
         URL.revokeObjectURL(url);
       };
 
-      const getBackupName = () => "preview-backup-latest.html";
-
       const getCurrentHtmlName = () => {
         const name = decodeURIComponent(window.location.pathname.split("/").pop() || "").trim();
         return name.toLowerCase().endsWith(".html") ? name : "index.html";
@@ -3483,13 +3481,10 @@
       };
 
       let htmlFileHandle = null;
-      let backupFileHandle = null;
       let htmlDirectoryHandle = null;
-      let backupDirectoryHandle = null;
 
       const saveToFile = async () => {
         const html = getCleanHtml();
-        const backupName = getBackupName();
         const mainFileName = getCurrentHtmlName();
         localStorage.removeItem(legacyStorageKey);
         if ("showDirectoryPicker" in window) {
@@ -3497,29 +3492,13 @@
             id: "ppt-main-site",
             mode: "readwrite"
           });
-          const backupDirectory = backupDirectoryHandle || await window.showDirectoryPicker({
-            id: "ppt-backups",
-            mode: "readwrite"
-          });
           htmlDirectoryHandle = directoryHandle;
-          backupDirectoryHandle = backupDirectory;
-          const backupHandle = await backupDirectory.getFileHandle(backupName, { create: true });
           const mainHandle = await directoryHandle.getFileHandle(mainFileName, { create: true });
-          await writeHtmlFile(backupHandle, html);
           await writeHtmlFile(mainHandle, html);
-          alert(`已保存 ${mainFileName}，备份已写入独立备份目录：${backupName}`);
+          alert(`Saved ${mainFileName}`);
           return;
         }
         if ("showSaveFilePicker" in window) {
-          const backupHandle = backupFileHandle || await window.showSaveFilePicker({
-              suggestedName: backupName,
-              types: [{
-                description: "HTML file",
-                accept: { "text/html": [".html"] }
-              }]
-            });
-          backupFileHandle = backupHandle;
-          await writeHtmlFile(backupHandle, html);
           const handle = htmlFileHandle || await window.showSaveFilePicker({
               suggestedName: mainFileName,
               types: [{
@@ -3529,12 +3508,11 @@
             });
           htmlFileHandle = handle;
           await writeHtmlFile(handle, html);
-          alert(`已保存 HTML 文件，并额外生成备份：${backupName}`);
+          alert(`Saved ${mainFileName}`);
           return;
         }
         downloadHtml(html, mainFileName);
-        downloadHtml(html, backupName);
-        alert("浏览器不支持直接写入文件夹，已下载主文件和备份。");
+        alert("Downloaded main HTML file.");
       };
 
       const projectCards = Array.from(document.querySelectorAll(".ai-project-card"));
@@ -3576,42 +3554,72 @@
       };
       const goToSlide = (index) => {
         const target = slides[Math.max(0, Math.min(slides.length - 1, index))];
-        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (!target) return;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.setTimeout(() => {
+          target.scrollIntoView({ behavior: "auto", block: "start" });
+        }, 760);
       };
       const goBy = (offset) => goToSlide(getActiveSlideIndex() + offset);
+      let slideNavLock = false;
+      const goByLocked = (offset) => {
+        if (slideNavLock) return;
+        slideNavLock = true;
+        goBy(offset);
+        window.setTimeout(() => { slideNavLock = false; }, 780);
+      };
       const isToonhubSlideActive = () => slides[getActiveSlideIndex()]?.classList.contains("toonhub-page");
       const getToonhubFrame = () => document.querySelector(".toonhub-frame");
-      let pendingToonhubDirection = null;
       let toonhubWheelLock = false;
-      const navigateToonhubPartner = (direction, clamp = true) => {
-        pendingToonhubDirection = direction;
-        getToonhubFrame()?.contentWindow?.postMessage({ type: "toonhub-navigate", direction, clamp }, "*");
+      let toonhubStepLock = false;
+      const toonhubPartnerCount = Math.max(1, toonhubNotes.length || 5);
+      const syncToonhubFrameIndex = (index) => {
+        getToonhubFrame()?.contentWindow?.postMessage({ type: "toonhub-set-index", index }, "*");
       };
+      const setToonhubPartnerIndex = (index, saveCurrent = true) => {
+        const nextIndex = Math.max(0, Math.min(toonhubPartnerCount - 1, index));
+        showToonhubNote(nextIndex, saveCurrent);
+        syncToonhubFrameIndex(nextIndex);
+      };
+      const stepToonhubPartner = (direction) => {
+        if (toonhubStepLock) return;
+        toonhubStepLock = true;
+        window.setTimeout(() => { toonhubStepLock = false; }, 680);
+        const nextIndex = direction === "prev" ? toonhubActiveIndex - 1 : toonhubActiveIndex + 1;
+        if (nextIndex < 0) {
+          goByLocked(-1);
+          return;
+        }
+        if (nextIndex >= toonhubPartnerCount) {
+          goByLocked(1);
+          return;
+        }
+        setToonhubPartnerIndex(nextIndex);
+      };
+      getToonhubFrame()?.addEventListener("load", () => syncToonhubFrameIndex(toonhubActiveIndex));
       window.addEventListener("message", (event) => {
         if (event.source !== getToonhubFrame()?.contentWindow) return;
         if (event.data?.type !== "toonhub-boundary") return;
-        const direction = event.data.direction || pendingToonhubDirection;
-        pendingToonhubDirection = null;
-        if (!event.data.moved && isToonhubSlideActive()) {
-          goBy(direction === "prev" ? -1 : 1);
+        if (event.data.moved && isToonhubSlideActive() && Number.isInteger(event.data.index)) {
+          setToonhubPartnerIndex(event.data.index);
+        } else if (!event.data.moved && isToonhubSlideActive()) {
+          goByLocked(event.data.direction === "prev" ? -1 : 1);
         }
       });
 
       window.addEventListener("keydown", (event) => {
         if (isEditingText() || event.altKey || event.ctrlKey || event.metaKey) return;
-        if (isToonhubSlideActive() && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
-          event.preventDefault();
-          navigateToonhubPartner(event.key === "ArrowDown" ? "next" : "prev");
-          return;
-        }
         const nextKeys = ["ArrowDown", "ArrowRight", "PageDown", " ", "Enter"];
         const prevKeys = ["ArrowUp", "ArrowLeft", "PageUp", "Backspace"];
-        if (nextKeys.includes(event.key)) {
+        if (isToonhubSlideActive() && (nextKeys.includes(event.key) || prevKeys.includes(event.key))) {
           event.preventDefault();
-          goBy(1);
+          stepToonhubPartner(nextKeys.includes(event.key) ? "next" : "prev");
+        } else if (nextKeys.includes(event.key)) {
+          event.preventDefault();
+          goByLocked(1);
         } else if (prevKeys.includes(event.key)) {
           event.preventDefault();
-          goBy(-1);
+          goByLocked(-1);
         } else if (event.key === "Home") {
           event.preventDefault();
           goToSlide(0);
@@ -3628,13 +3636,13 @@
         if (isToonhubSlideActive()) {
           if (toonhubWheelLock) return;
           toonhubWheelLock = true;
-          navigateToonhubPartner(event.deltaY > 0 ? "next" : "prev");
+          stepToonhubPartner(event.deltaY > 0 ? "next" : "prev");
           window.setTimeout(() => { toonhubWheelLock = false; }, 760);
           return;
         }
         if (wheelLock) return;
         wheelLock = true;
-        goBy(event.deltaY > 0 ? 1 : -1);
+        goByLocked(event.deltaY > 0 ? 1 : -1);
         window.setTimeout(() => { wheelLock = false; }, 760);
       }, { passive: false });
 

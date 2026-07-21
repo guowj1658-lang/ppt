@@ -714,6 +714,17 @@
       window.parent.postMessage({ type: 'toonhub-partner-change', index: activeIndex }, '*');
     };
 
+    const setActiveIndex = (index) => {
+      const nextIndex = Math.max(0, Math.min(IMAGES.length - 1, Number(index) || 0));
+      if (nextIndex === activeIndex) {
+        render();
+        return false;
+      }
+      activeIndex = nextIndex;
+      render();
+      return true;
+    };
+
     const navigate = (direction, options = {}) => {
       if (isAnimating || IMAGES.length <= 1) return false;
       const nextIndex = direction === 'next'
@@ -725,13 +736,11 @@
       if (prevBtn) prevBtn.disabled = true;
       if (nextBtn) nextBtn.disabled = true;
 
-      activeIndex = options.clamp
-        ? Math.max(0, Math.min(IMAGES.length - 1, nextIndex))
+      setActiveIndex(options.clamp
+        ? nextIndex
         : direction === 'next'
           ? (activeIndex + 1) % IMAGES.length
-          : (activeIndex + IMAGES.length - 1) % IMAGES.length;
-
-      render();
+          : (activeIndex + IMAGES.length - 1) % IMAGES.length);
 
       window.setTimeout(() => {
         isAnimating = false;
@@ -772,17 +781,22 @@
 
     hero.addEventListener('click', (event) => {
       if (event.target.closest('.carousel-item, .partner-notes')) return;
-      navigate('next');
+      const moved = navigate('next', { clamp: true });
+      window.parent.postMessage({ type: 'toonhub-boundary', direction: 'next', moved, index: activeIndex }, '*');
     });
     window.addEventListener('keydown', (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey) return;
-      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      const nextKeys = ['ArrowDown', 'ArrowRight', 'PageDown', ' ', 'Enter'];
+      const prevKeys = ['ArrowUp', 'ArrowLeft', 'PageUp', 'Backspace'];
+      if (!nextKeys.includes(event.key) && !prevKeys.includes(event.key)) return;
       event.preventDefault();
-      const moved = navigate(event.key === 'ArrowDown' ? 'next' : 'prev', { clamp: true });
+      const direction = nextKeys.includes(event.key) ? 'next' : 'prev';
+      const moved = navigate(direction, { clamp: true });
       window.parent.postMessage({
         type: 'toonhub-boundary',
-        direction: event.key === 'ArrowDown' ? 'next' : 'prev',
-        moved
+        direction,
+        moved,
+        index: activeIndex
       }, '*');
     });
     let wheelLock = false;
@@ -793,14 +807,18 @@
       wheelLock = true;
       const direction = event.deltaY > 0 ? 'next' : 'prev';
       const moved = navigate(direction, { clamp: true });
-      window.parent.postMessage({ type: 'toonhub-boundary', direction, moved }, '*');
+      window.parent.postMessage({ type: 'toonhub-boundary', direction, moved, index: activeIndex }, '*');
       window.setTimeout(() => { wheelLock = false; }, 760);
     }, { passive: false });
     window.addEventListener('message', (event) => {
+      if (event.data?.type === 'toonhub-set-index') {
+        setActiveIndex(event.data.index);
+        return;
+      }
       if (event.data?.type !== 'toonhub-navigate') return;
       const direction = event.data.direction === 'prev' ? 'prev' : 'next';
       const moved = navigate(direction, { clamp: Boolean(event.data.clamp) });
-      window.parent.postMessage({ type: 'toonhub-boundary', direction, moved }, '*');
+      window.parent.postMessage({ type: 'toonhub-boundary', direction, moved, index: activeIndex }, '*');
     });
     window.addEventListener('resize', handleResize);
   </script>
