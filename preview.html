@@ -577,11 +577,11 @@
     .quote-background-page::before {
       content: "";
       position: absolute;
-      inset: -2%;
+      inset: 0;
       z-index: 0;
       background: url("assets/runner-stages-bg.webp") center 52% / cover no-repeat;
-      filter: saturate(.34) contrast(1.14) brightness(.58);
-      transform: scale(1.025);
+      filter: saturate(.52) contrast(1.24) brightness(.72);
+      transform: none;
       pointer-events: none;
     }
 
@@ -590,11 +590,14 @@
       position: absolute;
       inset: 0;
       z-index: 1;
+      width: auto;
+      height: auto;
+      border: 0;
+      border-radius: 0;
+      transform: none;
       background:
-        radial-gradient(circle at 76% 30%, rgba(54, 154, 221, .22), transparent 34%),
-        radial-gradient(circle at 18% 78%, rgba(92, 63, 210, .22), transparent 38%),
-        linear-gradient(90deg, rgba(2, 6, 17, .68) 0%, rgba(6, 16, 34, .43) 48%, rgba(2, 8, 20, .70) 100%),
-        linear-gradient(180deg, rgba(1, 5, 13, .48), rgba(5, 12, 28, .34) 48%, rgba(5, 7, 21, .76));
+        linear-gradient(90deg, rgba(1, 7, 19, .46) 0%, rgba(6, 21, 42, .27) 48%, rgba(2, 9, 23, .50) 100%),
+        linear-gradient(180deg, rgba(1, 9, 22, .30) 0%, rgba(5, 25, 48, .13) 52%, rgba(5, 8, 24, .56) 100%);
       pointer-events: none;
     }
 
