@@ -1,0 +1,7 @@
+.git
+.vercel
+.tools
+*.ps1
+*.cmd
+*.md
+gif-candidates-*.webp
