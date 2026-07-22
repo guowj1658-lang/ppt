@@ -567,6 +567,50 @@
       color: rgba(205, 220, 246, 0.78);
     }
 
+    .quote-background-page {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background: #020712;
+    }
+
+    .quote-background-page::before {
+      content: "";
+      position: absolute;
+      inset: -2%;
+      z-index: 0;
+      background: url("assets/runner-stages-bg.webp") center 52% / cover no-repeat;
+      filter: saturate(.34) contrast(1.14) brightness(.58);
+      transform: scale(1.025);
+      pointer-events: none;
+    }
+
+    .quote-background-page::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 76% 30%, rgba(54, 154, 221, .22), transparent 34%),
+        radial-gradient(circle at 18% 78%, rgba(92, 63, 210, .22), transparent 38%),
+        linear-gradient(90deg, rgba(2, 6, 17, .68) 0%, rgba(6, 16, 34, .43) 48%, rgba(2, 8, 20, .70) 100%),
+        linear-gradient(180deg, rgba(1, 5, 13, .48), rgba(5, 12, 28, .34) 48%, rgba(5, 7, 21, .76));
+      pointer-events: none;
+    }
+
+    .quote-background-page .growth-blank-inner {
+      z-index: 2;
+    }
+
+    .quote-background-page .growth-blank-title {
+      text-shadow: 0 8px 34px rgba(0, 0, 0, .76), 0 0 42px rgba(66, 172, 235, .15);
+    }
+
+    .quote-background-page .growth-blank-subtitle {
+      color: rgba(218, 229, 249, .88);
+      text-shadow: 0 4px 18px rgba(0, 0, 0, .82);
+    }
+
     .insight-blank-page .growth-blank-inner {
       display: grid;
       grid-template-columns: minmax(0, 0.86fr) minmax(560px, 1fr);
@@ -2855,7 +2899,7 @@
   </style>
 </head>
 
-<body class="" data-version="4.0.5" data-settings-changed-at="0" data-cid="1784715908348">
+<body class="" data-version="4.0.5" data-settings-changed-at="0" data-cid="1784733557694">
   <div class="editor-toolbar" aria-label="页面编辑工具">
     <span class="editor-toggle-icon" aria-hidden="true"></span>
     <button type="button" data-action="preview" class="is-active">浏览</button>
@@ -3456,7 +3500,7 @@
             <div class="growth-detail-note-index" data-edit-id="text-120">03</div>
             <div>
               <div class="growth-detail-note-title" data-edit-id="text-121">全案推进</div>
-              <div class="growth-detail-note-text" data-edit-id="text-122">开始结合ai修图和排版学习来做出全套详情</div>
+              <div class="growth-detail-note-text" data-edit-id="text-122">开始练习精修，结合ai修图和排版学习来做出全套详情</div>
             </div>
           </div>
         </div>
@@ -3527,7 +3571,7 @@
     </div>
   </section>
 
-  <section class="growth-detail-page growth-blank-page" aria-label="空白页">
+  <section class="growth-detail-page growth-blank-page quote-background-page" aria-label="迷茫勿驻足，小事自引前路">
     <div class="growth-blank-inner">
       <h2 class="growth-blank-title" data-edit-id="text-103">迷茫勿驻足，小事自引前路</h2>
       <p class="growth-blank-subtitle" data-edit-id="text-104">遇到瓶颈时一定要选择动起来，不知道方向的时，那就从小事开始做起</p>
@@ -3923,24 +3967,5 @@
       setMode("preview");
     })();
   </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body></html>
+</body>
+</html>
