@@ -675,7 +675,7 @@
     .insight-section + .insight-section {
       padding-top: 0;
       border-top: 0;
-      margin-top: clamp(26px, 3.2vh, 42px);
+      margin-top: clamp(34px, 4vh, 52px);
     }
 
     .insight-section-label {
@@ -698,6 +698,22 @@
       line-height: 1.35;
       font-weight: 800;
       color: rgba(255,255,255,0.9);
+    }
+
+    .insight-section-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .insight-section-desc {
+      margin: 0;
+      max-width: 680px;
+      font-size: clamp(18px, 1.25vw, 25px);
+      line-height: 1.55;
+      font-weight: 400;
+      color: rgba(190, 208, 236, 0.76);
     }
 
     .growth-detail-inner {
@@ -3284,15 +3300,24 @@
       <div class="insight-card">
         <div class="insight-section">
           <div class="insight-section-label" data-edit-id="text-127">O</div>
-          <p class="insight-section-text" data-edit-id="text-128">从参考到落地</p>
+          <div class="insight-section-copy">
+            <p class="insight-section-text" data-edit-id="text-128">从参考到落地</p>
+            <p class="insight-section-desc" data-edit-id="text-147">准确拆解构图、材质与光影，让参考图快速转化为可执行方案。</p>
+          </div>
         </div>
         <div class="insight-section">
           <div class="insight-section-label" data-edit-id="text-129">O</div>
-          <p class="insight-section-text" data-edit-id="text-130">质感稳定输出</p>
+          <div class="insight-section-copy">
+            <p class="insight-section-text" data-edit-id="text-130">质感稳定输出</p>
+            <p class="insight-section-desc" data-edit-id="text-148">统一材质标准与灯光逻辑，让不同项目也能保持稳定的视觉品质。</p>
+          </div>
         </div>
         <div class="insight-section">
           <div class="insight-section-label" data-edit-id="text-131">O</div>
-          <p class="insight-section-text" data-edit-id="text-132">设计化繁为简</p>
+          <div class="insight-section-copy">
+            <p class="insight-section-text" data-edit-id="text-132">设计化繁为简</p>
+            <p class="insight-section-desc" data-edit-id="text-149">提炼核心卖点与视觉重点，用更清晰的画面完成信息表达。</p>
+          </div>
         </div>
       </div>
     </div>
@@ -3344,15 +3369,24 @@
       <div class="insight-card">
         <div class="insight-section">
           <div class="insight-section-label" data-edit-id="text-134">O</div>
-          <p class="insight-section-text" data-edit-id="text-135">建模动手能力</p>
+          <div class="insight-section-copy">
+            <p class="insight-section-text" data-edit-id="text-135">建模动手能力</p>
+            <p class="insight-section-desc" data-edit-id="text-150">从基础结构到细节完善，提升独立搭建和解决问题的效率。</p>
+          </div>
         </div>
         <div class="insight-section">
           <div class="insight-section-label" data-edit-id="text-136">O</div>
-          <p class="insight-section-text" data-edit-id="text-137">画面感决定质感</p>
+          <div class="insight-section-copy">
+            <p class="insight-section-text" data-edit-id="text-137">画面感决定质感</p>
+            <p class="insight-section-desc" data-edit-id="text-151">通过构图、光影与色彩控制，让产品质感更自然、更有说服力。</p>
+          </div>
         </div>
         <div class="insight-section">
           <div class="insight-section-label" data-edit-id="text-138">O</div>
-          <p class="insight-section-text" data-edit-id="text-139">白底图也得细节满满</p>
+          <div class="insight-section-copy">
+            <p class="insight-section-text" data-edit-id="text-139">白底图也得细节满满</p>
+            <p class="insight-section-desc" data-edit-id="text-152">在简洁背景中强化材质、边缘与投影，让产品更加精致耐看。</p>
+          </div>
         </div>
       </div>
     </div>
@@ -3457,15 +3491,24 @@
       <div class="insight-card">
         <div class="insight-section">
           <div class="insight-section-label" data-edit-id="text-141">O</div>
-          <p class="insight-section-text" data-edit-id="text-142">积极沟通的重要性</p>
+          <div class="insight-section-copy">
+            <p class="insight-section-text" data-edit-id="text-142">积极沟通的重要性</p>
+            <p class="insight-section-desc" data-edit-id="text-153">及时对齐目标和反馈，让AI生成结果更快贴近真实需求。</p>
+          </div>
         </div>
         <div class="insight-section">
           <div class="insight-section-label" data-edit-id="text-143">O</div>
-          <p class="insight-section-text" data-edit-id="text-144">主动接触新问题</p>
+          <div class="insight-section-copy">
+            <p class="insight-section-text" data-edit-id="text-144">主动接触新问题</p>
+            <p class="insight-section-desc" data-edit-id="text-154">面对陌生任务先尝试再总结，在实践中持续扩展能力边界。</p>
+          </div>
         </div>
         <div class="insight-section">
           <div class="insight-section-label" data-edit-id="text-145">O</div>
-          <p class="insight-section-text" data-edit-id="text-146">把经验从熟练做到重复</p>
+          <div class="insight-section-copy">
+            <p class="insight-section-text" data-edit-id="text-146">把经验从熟练做到重复</p>
+            <p class="insight-section-desc" data-edit-id="text-155">将有效方法沉淀为稳定流程，让好的结果可以持续复用。</p>
+          </div>
         </div>
       </div>
     </div>
