@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#010307">
+  <title>郭万杰｜作品集手机版</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      background: #010307;
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #010307;
+    }
+
+    .mobile-shell {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 70% 10%, rgba(26, 179, 255, 0.12), transparent 34%),
+        #010307;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 20;
+      width: 100%;
+      height: max(3px, env(safe-area-inset-top));
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .progress-fill {
+      display: block;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #13d8ff, #7f6cff);
+      box-shadow: 0 0 18px rgba(19, 216, 255, 0.7);
+      transition: width 90ms linear;
+    }
+
+    .site-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #010307;
+    }
+
+    .loading {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: rgba(255, 255, 255, 0.74);
+      background: #010307;
+      transition: opacity 320ms ease, visibility 320ms ease;
+    }
+
+    .loading.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loading-inner {
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+    }
+
+    .loading-ring {
+      width: 38px;
+      height: 38px;
+      border: 2px solid rgba(255, 255, 255, 0.14);
+      border-top-color: #19d5ff;
+      border-radius: 50%;
+      animation: spin 800ms linear infinite;
+    }
+
+    .to-top {
+      position: fixed;
+      right: max(16px, env(safe-area-inset-right));
+      bottom: max(18px, env(safe-area-inset-bottom));
+      z-index: 20;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: rgba(5, 12, 25, 0.78);
+      box-shadow: 0 10px 34px rgba(0, 0, 0, 0.34);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .to-top.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .to-top::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-left: 2px solid currentColor;
+      border-top: 2px solid currentColor;
+      transform: translateY(3px) rotate(45deg);
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .loading-ring {
+        animation: none;
+      }
+
+      .progress-fill,
+      .loading,
+      .to-top {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="mobile-shell">
+    <div class="progress" aria-hidden="true">
+      <span class="progress-fill" id="progressFill"></span>
+    </div>
+
+    <div class="loading" id="loading" aria-live="polite">
+      <div class="loading-inner">
+        <span class="loading-ring" aria-hidden="true"></span>
+        <span>正在载入手机版作品集</span>
+      </div>
+    </div>
+
+    <iframe
+      class="site-frame"
+      id="siteFrame"
+      src="preview.html"
+      title="郭万杰作品集手机版"
+      loading="eager"
+    ></iframe>
+
+    <button class="to-top" id="toTop" type="button" aria-label="返回顶部"></button>
+  </main>
+
+  <script>
+    (() => {
+      const frame = document.getElementById("siteFrame");
+      const loading = document.getElementById("loading");
+      const progressFill = document.getElementById("progressFill");
+      const toTop = document.getElementById("toTop");
+
+      const mobileOverrides = `
+        :root {
+          --mobile-gutter: 20px;
+        }
+
+        html {
+          scroll-behavior: smooth;
+          background: #010307 !important;
+        }
+
+        body {
+          width: 100% !important;
+          min-width: 0 !important;
+          background: #010307 !important;
+          -webkit-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+        }
+
+        body > section {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .container,
+        .intro-inner,
+        .services-inner,
+        .chapter-inner,
+        .summary-content,
+        .works-page-inner,
+        .growth-detail-inner,
+        .ai-change-inner,
+        .product-compare-inner,
+        .thanks-inner {
+          width: calc(100% - (var(--mobile-gutter) * 2)) !important;
+          max-width: none !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+
+        .hero-page,
+        .chapter-page,
+        .intro-curve-page,
+        .thanks-page {
+          min-height: 100svh !important;
+          height: auto !important;
+        }
+
+        .hero-content {
+          min-height: 100svh !important;
+          height: auto !important;
+        }
+
+        .hero-video {
+          min-height: 100svh !important;
+          object-position: 52% center !important;
+        }
+
+        .nav-inner {
+          padding-top: max(22px, env(safe-area-inset-top)) !important;
+        }
+
+        .logo-text {
+          font-size: 12px !important;
+        }
+
+        .top-section {
+          padding-top: 54px !important;
+        }
+
+        .top-grid {
+          grid-template-columns: 1fr !important;
+          gap: 10px !important;
+        }
+
+        .top-brand {
+          justify-content: flex-start !important;
+        }
+
+        .center-section {
+          padding: 8vh 0 12vh !important;
+        }
+
+        .hero-title {
+          max-width: 10ch !important;
+          font-size: clamp(42px, 14vw, 68px) !important;
+          line-height: 0.96 !important;
+          overflow-wrap: anywhere;
+        }
+
+        .cta-button {
+          min-height: 48px !important;
+          padding: 14px 22px !important;
+        }
+
+        .intro-page,
+        .services-page,
+        .summary-page,
+        .works-page,
+        .growth-detail-page,
+        .ai-change-page,
+        .product-compare-page,
+        .ai-project-stage {
+          min-height: auto !important;
+          height: auto !important;
+          overflow: hidden !important;
+        }
+
+        .intro-inner {
+          min-height: 100svh !important;
+          padding: 72px 0 !important;
+          grid-template-columns: 1fr !important;
+          gap: 34px !important;
+        }
+
+        .intro-copy {
+          justify-self: stretch !important;
+          width: 100% !important;
+        }
+
+        .intro-title {
+          font-size: clamp(54px, 18vw, 82px) !important;
+        }
+
+        .intro-portrait {
+          justify-self: center !important;
+          width: min(82vw, 360px) !important;
+        }
+
+        .services-inner {
+          min-height: auto !important;
+          padding: 72px 0 !important;
+        }
+
+        .services-heading,
+        .ai-change-title,
+        .compare-title,
+        .summary-title {
+          font-size: clamp(42px, 13vw, 64px) !important;
+          line-height: 1 !important;
+        }
+
+        .service-row {
+          grid-template-columns: 70px minmax(0, 1fr) !important;
+          gap: 18px !important;
+          min-height: 118px !important;
+          padding: 22px 0 !important;
+        }
+
+        .service-number {
+          font-size: 48px !important;
+        }
+
+        .service-title {
+          font-size: clamp(24px, 8vw, 38px) !important;
+        }
+
+        .chapter-inner {
+          min-height: 100svh !important;
+          padding: 76px 0 !important;
+          grid-template-columns: 1fr !important;
+          align-content: center !important;
+          gap: 28px !important;
+        }
+
+        .chapter-title {
+          font-size: clamp(58px, 20vw, 92px) !important;
+          line-height: 0.94 !important;
+          overflow-wrap: anywhere;
+        }
+
+        .timeline-panels {
+          width: 220% !important;
+          left: -60% !important;
+        }
+
+        .intro-curve-number {
+          font-size: clamp(118px, 42vw, 190px) !important;
+        }
+
+        .toonhub-page {
+          height: 100svh !important;
+          min-height: 100svh !important;
+        }
+
+        .toonhub-note-overlay {
+          left: 18px !important;
+          right: 18px !important;
+          top: auto !important;
+          bottom: 22px !important;
+          max-width: none !important;
+        }
+
+        .summary-content {
+          min-height: auto !important;
+          padding: 72px 0 !important;
+        }
+
+        .summary-cards,
+        .works-cards,
+        .ai-change-layout,
+        .ai-change-visuals,
+        .growth-detail-inner,
+        .compare-flow {
+          grid-template-columns: 1fr !important;
+        }
+
+        .summary-cards,
+        .works-cards {
+          gap: 16px !important;
+        }
+
+        .summary-card {
+          min-height: 150px !important;
+          padding: 24px !important;
+        }
+
+        .summary-number {
+          font-size: clamp(82px, 28vw, 126px) !important;
+        }
+
+        .works-page-inner {
+          min-height: auto !important;
+          padding: 64px 0 !important;
+        }
+
+        .works-layout {
+          min-height: 0 !important;
+          grid-template-columns: 1fr !important;
+        }
+
+        .works-sidebar {
+          padding-top: 0 !important;
+        }
+
+        .works-card {
+          min-height: 0 !important;
+        }
+
+        .works-card img,
+        .works-card video {
+          width: 100% !important;
+          height: auto !important;
+          object-fit: cover !important;
+        }
+
+        .product-compare-inner {
+          min-height: auto !important;
+          padding: 70px 0 !important;
+        }
+
+        .compare-flow {
+          gap: 28px !important;
+        }
+
+        .compare-product {
+          width: 100% !important;
+          height: auto !important;
+          max-height: none !important;
+        }
+
+        .compare-marker {
+          width: 2px !important;
+          height: 42px !important;
+          justify-self: center !important;
+        }
+
+        .mosaic-page {
+          height: 145svh !important;
+          min-height: 760px !important;
+        }
+
+        .mosaic-grid {
+          grid-template-columns: repeat(6, 1fr) !important;
+          grid-template-rows: repeat(24, 1fr) !important;
+        }
+
+        .growth-detail-inner {
+          min-height: auto !important;
+          padding: 70px 0 !important;
+          gap: 30px !important;
+        }
+
+        .growth-detail-title,
+        .growth-blank-title {
+          font-size: clamp(38px, 12vw, 58px) !important;
+          line-height: 1.08 !important;
+        }
+
+        .growth-detail-frames {
+          width: 100% !important;
+          gap: 14px !important;
+        }
+
+        .growth-detail-frame {
+          border-radius: 8px !important;
+        }
+
+        .growth-blank-page {
+          min-height: 100svh !important;
+        }
+
+        .ai-change-inner {
+          min-height: auto !important;
+          padding: 70px 0 !important;
+        }
+
+        .ai-change-layout {
+          gap: 34px !important;
+        }
+
+        .ai-change-visuals {
+          gap: 14px !important;
+        }
+
+        .ai-change-copy h2 {
+          font-size: clamp(24px, 7vw, 34px) !important;
+        }
+
+        .ai-project-card {
+          top: auto !important;
+          height: auto !important;
+          min-height: 100svh !important;
+          padding: 64px 20px !important;
+          transform: none !important;
+        }
+
+        .thanks-title {
+          font-size: clamp(74px, 24vw, 126px) !important;
+        }
+
+        img,
+        video,
+        iframe {
+          max-width: 100%;
+        }
+
+        button,
+        a {
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        @media (max-width: 380px) {
+          :root {
+            --mobile-gutter: 16px;
+          }
+
+          .hero-title {
+            font-size: 40px !important;
+          }
+
+          .service-row {
+            grid-template-columns: 56px minmax(0, 1fr) !important;
+          }
+
+          .service-number {
+            font-size: 40px !important;
+          }
+        }
+      `;
+
+      const updateProgress = () => {
+        const win = frame.contentWindow;
+        const doc = frame.contentDocument;
+        if (!win || !doc) return;
+        const root = doc.documentElement;
+        const max = Math.max(1, root.scrollHeight - win.innerHeight);
+        const ratio = Math.min(1, Math.max(0, win.scrollY / max));
+        progressFill.style.width = `${ratio * 100}%`;
+        toTop.classList.toggle("is-visible", win.scrollY > win.innerHeight * 0.8);
+      };
+
+      frame.addEventListener("load", () => {
+        try {
+          const doc = frame.contentDocument;
+          const win = frame.contentWindow;
+          if (!doc || !win) return;
+
+          const style = doc.createElement("style");
+          style.id = "mobile-page-overrides";
+          style.textContent = mobileOverrides;
+          doc.head.appendChild(style);
+          doc.documentElement.lang = "zh-CN";
+          doc.title = "郭万杰｜作品集手机版";
+
+          win.addEventListener("scroll", updateProgress, { passive: true });
+          win.addEventListener("resize", updateProgress, { passive: true });
+          requestAnimationFrame(updateProgress);
+          loading.classList.add("is-hidden");
+        } catch (error) {
+          loading.querySelector(".loading-inner").textContent = "请通过网站地址打开手机版页面";
+        }
+      });
+
+      toTop.addEventListener("click", () => {
+        frame.contentWindow?.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>
