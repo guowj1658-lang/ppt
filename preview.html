@@ -2915,6 +2915,317 @@
       }
     }
 
+    /* Phone layout: desktop presentation stays unchanged above 760px. */
+    @media (max-width: 760px) {
+      :root {
+        --phone-gutter: 20px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 0;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      body > section {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .container,
+      .intro-inner,
+      .services-inner,
+      .chapter-inner,
+      .summary-content,
+      .works-page-inner,
+      .growth-detail-inner,
+      .ai-change-inner,
+      .product-compare-inner {
+        width: calc(100% - (var(--phone-gutter) * 2));
+        max-width: none;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-page,
+      .chapter-page,
+      .intro-curve-page,
+      .thanks-page {
+        height: auto;
+        min-height: 100svh;
+      }
+
+      .hero-content {
+        height: auto;
+        min-height: 100svh;
+      }
+
+      .hero-video {
+        height: 100svh;
+        min-height: 100svh;
+        object-position: 52% center;
+      }
+
+      .nav-inner {
+        padding-top: max(22px, env(safe-area-inset-top));
+      }
+
+      .logo-text {
+        font-size: 12px;
+      }
+
+      .top-section {
+        padding-top: 52px;
+      }
+
+      .top-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .top-brand {
+        justify-content: flex-start;
+      }
+
+      .center-section {
+        padding: 7vh 0 11vh;
+      }
+
+      .hero-title {
+        max-width: 10ch;
+        font-size: clamp(40px, 13vw, 62px);
+        line-height: 0.98;
+        overflow-wrap: anywhere;
+      }
+
+      .cta-button {
+        min-height: 48px;
+        padding: 14px 20px;
+        white-space: nowrap;
+      }
+
+      .intro-page,
+      .services-page,
+      .summary-page,
+      .works-page,
+      .growth-detail-page,
+      .ai-change-page,
+      .product-compare-page,
+      .ai-project-stage {
+        height: auto;
+        min-height: auto;
+        overflow: hidden;
+      }
+
+      .intro-inner {
+        min-height: 100svh;
+        padding: 68px 0;
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .intro-copy {
+        width: 100%;
+        justify-self: stretch;
+      }
+
+      .intro-title {
+        font-size: clamp(52px, 17vw, 78px);
+      }
+
+      .intro-panel {
+        width: min(84vw, 380px);
+      }
+
+      .services-inner,
+      .summary-content,
+      .works-page-inner,
+      .growth-detail-inner,
+      .ai-change-inner,
+      .product-compare-inner {
+        min-height: auto;
+        padding-top: 68px;
+        padding-bottom: 68px;
+      }
+
+      .services-heading,
+      .summary-title,
+      .ai-change-title,
+      .compare-title {
+        font-size: clamp(42px, 13vw, 62px);
+        line-height: 1;
+      }
+
+      .service-row {
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 16px;
+        min-height: 112px;
+        padding: 20px 0;
+      }
+
+      .service-number {
+        font-size: 44px;
+      }
+
+      .service-title {
+        font-size: clamp(24px, 8vw, 36px);
+      }
+
+      .chapter-inner {
+        min-height: 100svh;
+        padding: 72px 0;
+        grid-template-columns: 1fr;
+        align-content: center;
+        gap: 26px;
+      }
+
+      .chapter-title {
+        font-size: clamp(56px, 19vw, 88px);
+        line-height: 0.96;
+        overflow-wrap: anywhere;
+      }
+
+      .timeline-panels {
+        width: 210%;
+        left: -55%;
+      }
+
+      .intro-curve-number {
+        font-size: clamp(116px, 40vw, 184px);
+      }
+
+      .summary-cards,
+      .works-cards,
+      .ai-change-layout,
+      .growth-detail-inner,
+      .compare-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-cards,
+      .works-cards {
+        gap: 16px;
+      }
+
+      .summary-card {
+        min-height: 148px;
+        padding: 24px;
+      }
+
+      .summary-number {
+        font-size: clamp(78px, 27vw, 120px);
+      }
+
+      .works-layout {
+        min-height: 0;
+        grid-template-columns: 1fr;
+      }
+
+      .works-sidebar {
+        padding-top: 0;
+      }
+
+      .works-card {
+        min-height: 0;
+      }
+
+      .works-card img,
+      .works-card video {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .compare-flow {
+        gap: 26px;
+      }
+
+      .compare-product {
+        width: 100%;
+        height: auto;
+        max-height: none;
+      }
+
+      .compare-marker {
+        width: 2px;
+        height: 42px;
+        justify-self: center;
+      }
+
+      .mosaic-page {
+        height: 130svh;
+        min-height: 720px;
+      }
+
+      .growth-detail-inner {
+        gap: 28px;
+      }
+
+      .growth-detail-title,
+      .growth-blank-title {
+        font-size: clamp(38px, 12vw, 56px);
+        line-height: 1.08;
+      }
+
+      .growth-detail-frames {
+        width: 100%;
+        gap: 14px;
+      }
+
+      .growth-blank-page {
+        min-height: 100svh;
+      }
+
+      .ai-change-layout {
+        gap: 32px;
+      }
+
+      .ai-change-visuals,
+      .ai-animation-grid,
+      .ai-effects-grid,
+      .ai-project-grid.portrait-four,
+      .ai-project-grid.mixed-six {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-project-stage {
+        padding: 28px 14px;
+      }
+
+      .ai-project-card {
+        top: auto;
+        height: auto;
+        min-height: auto;
+        padding: 28px 16px;
+        border-radius: 20px;
+        transform: none !important;
+      }
+
+      .ai-project-grid.portrait-four .ai-project-frame,
+      .ai-project-grid.mixed-six .ai-project-frame {
+        width: 100%;
+      }
+
+      .thanks-title {
+        font-size: clamp(72px, 23vw, 120px);
+      }
+
+      img,
+      video,
+      iframe {
+        max-width: 100%;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
+
   </style>
 </head>
 
